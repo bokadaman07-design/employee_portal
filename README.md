@@ -14,13 +14,6 @@ Employee Tracker is a production-ready MVP for managing employees, leave request
 - Frontend: React 18, Vite, React Router DOM, TailwindCSS, Axios, Lucide icons
 - Runtime: Docker and Docker Compose
 
-## Default Login
-
-- Username: `admin`
-- Password: `admin123`
-
-The admin user is seeded on backend startup. The password is stored as a bcrypt hash, never as plaintext.
-
 ## Docker Setup
 
 From the repository root:
