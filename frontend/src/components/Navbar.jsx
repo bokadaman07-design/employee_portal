@@ -5,6 +5,12 @@ import { useAuth } from "../context/AuthContext";
 export default function Navbar({ onMenuClick }) {
   const { logout, user } = useAuth();
 
+  function handleSignOut() {
+    if (window.confirm("Are you sure you want to sign out?")) {
+      logout();
+    }
+  }
+
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-mist/95 backdrop-blur">
       <div className="flex h-16 items-center gap-3 px-4 md:px-6">
@@ -27,7 +33,7 @@ export default function Navbar({ onMenuClick }) {
           </div>
           <button
             type="button"
-            onClick={logout}
+            onClick={handleSignOut}
             className="focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white"
           >
             <LogOut size={16} />

@@ -160,3 +160,71 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 09:01 UTC
+
+**Incident:** Produck feedback ticket 8bbdb460-18f2-4588-8d5a-c38f93b51a80: Sign out button should ask for confirmation before logging out
+
+Classification: ux
+Priority: high
+Affected route: /
+
+Problem:
+The Sign Out action executes immediately without a confirmation step, risking accidental logouts
+
+Reproduction / evidence:
+- Click on the Sign out button
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='when clicked on sign out should ask for conformation.', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['header > div > div:nth-of-type(2) > button'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Intercept the Sign Out click event and display a confirmation dialog asking 'Are you sure you want to sign out?'
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_0acJLVq5aj8FXELu9uxoresV, file:file_QUrRQpl1gpwI5xbZp17jMM, file:file_GwqKE1F0sudrtjZu7BMBDtI
+
+**Hypothesis:** The Sign Out button in the Navbar component does not have a confirmation step before logging out
+
+**Reasoning:** The incident report and documentation suggest that the Sign Out action executes immediately without a confirmation step, risking accidental logouts. The relevant code is likely in the Navbar component, which is responsible for the sign-out control. The suggested fix is to intercept the Sign Out click event and display a confirmation dialog, which aligns with the hypothesis.
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Update the sign-out UI in frontend/src/components/Navbar.jsx to ask for confirmation before calling logout
+* Leave the actual token/session clearing logic centralized in frontend/src/context/AuthContext.js
+
+**Files Modified:**
+* `PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `backend/main.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_employee_gender.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_startup_schema_repairs.py` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/.state/` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-acf36eb1-ac48-4858-a6ae-d8a8cee8e828.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Navbar.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-6bf0909a-f460-41af-844f-e975fb9d12a2.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-6bf0909a-f460-41af-844f-e975fb9d12a2.md`.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---
