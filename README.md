@@ -69,11 +69,11 @@ The Sign Out button in the navbar (`frontend/src/components/Navbar.jsx`) opens a
 
 ## Currency Display
 
-Monetary values on the Dashboard (`frontend/src/views/Dashboard.jsx`) — the "Net payroll" summary card and the monthly payroll table (Base, Allowances, Deductions, Net) — are displayed in Rupees using the `₹` symbol. The underlying salary amounts are stored and returned by the API as plain numbers; the currency symbol is applied only at the presentation layer.
+ Monetary values on the Dashboard (`frontend/src/views/Dashboard.jsx`) — the "Net payroll" summary card and the monthly payroll table (Base, Allowances, Deductions, Net) — are displayed in Dollars using the `$` symbol. The underlying salary amounts are stored and returned by the API as plain numbers; the currency symbol is applied only at the presentation layer.
 
 ## Salary Total Preview
 
-The "Create salary record" form on the Dashboard (`frontend/src/views/Dashboard.jsx`) shows a live **Net salary preview** that updates in real time as the user types the base salary, allowances, or deductions. The preview mirrors the backend salary contract (`net_salary = base_salary + allowances - deductions`, rounded to 2 decimals; see `backend/routers/salary.py:calculate_net_salary`) so the figure shown before submitting matches the value the API will persist. Empty or non-numeric fields are treated as `0`, so the preview never displays `NaN`. The amount is rendered in Rupees (`₹`) at the presentation layer only.
+The "Create salary record" form on the Dashboard (`frontend/src/views/Dashboard.jsx`) shows a live **Net salary preview** that updates in real time as the user types the base salary, allowances, or deductions. The preview mirrors the backend salary contract (`net_salary = base_salary + allowances - deductions`, rounded to 2 decimals; see `backend/routers/salary.py:calculate_net_salary`) so the figure shown before submitting matches the value the API will persist. Empty or non-numeric fields are treated as `0`, so the preview never displays `NaN`. The amount is rendered in Dollars (`$`) at the presentation layer only.
 
 ## Dark Mode
 

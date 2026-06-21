@@ -171,7 +171,7 @@ export default function Dashboard() {
         <Card title="Employees" value={loading ? "..." : employees.length} description={`${activeEmployees} active`} accent="pine" />
         <Card title="Pending leave" value={loading ? "..." : leaveSummary.pending} description={`${leaveSummary.total} total requests`} accent="gold" />
         <Card title="Payroll records" value={loading ? "..." : payrollSummary.record_count} description={payrollSummary.month} accent="coral" />
-        <Card title="Net payroll" value={loading ? "..." : `₹${payrollSummary.net_payroll.toLocaleString()}`} description="Calculated from salary records" accent="ink" />
+        <Card title="Net payroll" value={loading ? "..." : `$${payrollSummary.net_payroll.toLocaleString()}`} description="Calculated from salary records" accent="ink" />
       </div>
 
       <section className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
@@ -218,13 +218,13 @@ export default function Dashboard() {
             <div className="flex items-center justify-between text-sm text-ink/70 dark:text-fog/70">
               <span>Base + allowances − deductions</span>
               <span>
-                ₹{salaryPreview.base.toLocaleString()} + ₹{salaryPreview.allowances.toLocaleString()} − ₹
+                ${salaryPreview.base.toLocaleString()} + ${salaryPreview.allowances.toLocaleString()} − $
                 {salaryPreview.deductions.toLocaleString()}
               </span>
             </div>
             <div className="mt-2 flex items-center justify-between border-t border-line pt-2 dark:border-edge">
               <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Net salary preview</span>
-              <span className="text-lg font-semibold text-ink dark:text-fog">₹{salaryPreview.net.toLocaleString()}</span>
+              <span className="text-lg font-semibold text-ink dark:text-fog">${salaryPreview.net.toLocaleString()}</span>
             </div>
           </div>
           <button disabled={saving} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">
@@ -253,10 +253,10 @@ export default function Dashboard() {
                   {salaryRecords.map((record) => (
                     <tr key={record.id}>
                       <td className="py-3">{record.employee_id}</td>
-                      <td className="py-3">₹{record.base_salary.toLocaleString()}</td>
-                      <td className="py-3">₹{record.allowances.toLocaleString()}</td>
-                      <td className="py-3">₹{record.deductions.toLocaleString()}</td>
-                      <td className="py-3 font-semibold">₹{record.net_salary.toLocaleString()}</td>
+                      <td className="py-3">${record.base_salary.toLocaleString()}</td>
+                      <td className="py-3">${record.allowances.toLocaleString()}</td>
+                      <td className="py-3">${record.deductions.toLocaleString()}</td>
+                      <td className="py-3 font-semibold">${record.net_salary.toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>
