@@ -555,3 +555,48 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 10:55 UTC
+
+**Incident:** The currency in the repo every where should be changed to Rupess
+
+**Documentation Referenced:**
+* file:file_6YFnWjXuChMesn1PS9aeIP5P, file:file_038f9KllXqZ2xdWrLisz8lP
+
+**Hypothesis:** Inconsistent currency unit changes
+
+**Reasoning:** The incident is caused by conflicting requests to change the currency unit in the repository. Earlier requests were made to change the currency to 'Ruppes' or 'Rupees', but a later incident requested changing it back to 'dollors'. The current request to change the currency to 'Rupess' may be the latest requirement, but the spelling inconsistency needs to be confirmed.
+
+**Confidence:** 80%
+
+**Remediation Strategy:**
+* Confirm the exact spelling of the currency unit
+* Update the currency unit in the repository to the confirmed spelling
+
+**Files Modified:**
+* `API_DOCUMENTATION.md` - changed by Enter Pro to implement or verify the remediation.
+* `PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-523e63ca-5bd5-4238-aa08-a5650adc9d0d.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-currency-dollars-to-rupees.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-currency-rupees-to-dollars.md` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/Dashboard.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/dashboard.currency.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-c646fafc-4ae4-47f0-aecd-0c8efe11b897.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-c646fafc-4ae4-47f0-aecd-0c8efe11b897.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-c646fafc-4ae4-47f0-aecd-0c8efe11b897.md`.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---
