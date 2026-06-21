@@ -82,10 +82,16 @@ Request:
   "last_name": "Lee",
   "email": "jordan.lee@example.com",
   "phone": "+1-555-0101",
+  "country_code": "+1",
   "role": "Engineering Manager",
   "employment_status": "Active"
 }
 ```
+
+`country_code` is optional and nullable. Omitting it (or sending `null`)
+keeps the stored value `null`; this preserves existing employee records that
+were created before the country code field existed. The `phone` field is
+unchanged and remains an independent, optional value.
 
 Response: `201 Created`
 
@@ -96,6 +102,7 @@ Response: `201 Created`
   "last_name": "Lee",
   "email": "jordan.lee@example.com",
   "phone": "+1-555-0101",
+  "country_code": "+1",
   "role": "Engineering Manager",
   "employment_status": "Active",
   "created_at": "2026-06-20T12:00:00",
