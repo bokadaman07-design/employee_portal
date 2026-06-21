@@ -75,6 +75,8 @@ Monetary values on the Dashboard (`frontend/src/views/Dashboard.jsx`) — the "N
 
 The "Create salary record" form on the Dashboard (`frontend/src/views/Dashboard.jsx`) shows a live **Net salary preview** that updates in real time as the user types the base salary, allowances, or deductions. The preview mirrors the backend salary contract (`net_salary = base_salary + allowances - deductions`, rounded to 2 decimals; see `backend/routers/salary.py:calculate_net_salary`) so the figure shown before submitting matches the value the API will persist. Empty or non-numeric fields are treated as `0`, so the preview never displays `NaN`. The amount is rendered in Rupees (`₹`) at the presentation layer only.
 
+The form also shows a **Projected payroll total** for the selected month: the net payroll already recorded for that month (`net_payroll` from `GET /salary/summary`) plus the net of the record about to be added. This lets the user verify the cumulative total amount they are building up before submitting. It updates live alongside the net salary preview and is rendered in Rupees (`₹`).
+
 ## Troubleshooting
 
 - If login fails after a backend restart, clear browser local storage and sign in again. This can happen when `SECRET_KEY` is not persisted.

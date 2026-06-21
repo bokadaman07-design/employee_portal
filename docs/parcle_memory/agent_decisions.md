@@ -667,3 +667,93 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 12:13 UTC
+
+**Incident:** Produck feedback ticket 79aced65-fd64-4409-89dd-a222ecd9f2de: No total preview is shown while entering salary details
+
+Classification: ux
+Priority: medium
+Affected route: /
+
+Problem:
+The user is unable to see a total preview of the salary amount being added, making it difficult to verify the cumulative amount before proceeding
+
+Reproduction / evidence:
+- Go to the salary entry page
+- Enter salary details
+- Observe that there is no total preview of the cumulative amount
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='Before adding the salary as there no preview of what total amount I am adding I need a total preview section', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['main > div > section > form'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Add a total preview element to the salary entry flow
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_mvvOIdiWDfTw6gLfS0SWqkn, file:file_6YFnWjXuChMesn1PS9aeIP5P, file:file_3EZuj0WLdA54VCCo2jTugTs2
+
+**Hypothesis:** The absence of a total preview element in the salary entry flow is causing the issue
+
+**Reasoning:** The user feedback and annotation point to the lack of a total preview, and the design doc and repo documentation confirm this as a UX issue and recommend adding a total preview element
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Add a total preview element near the salary input area in frontend/src/views/Dashboard.jsx
+
+**Files Modified:**
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `backend/.env.example` - changed by Enter Pro to implement or verify the remediation.
+* `backend/Dockerfile` - changed by Enter Pro to implement or verify the remediation.
+* `backend/auth.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/database.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/__init__.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/employees.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/leaves.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/salary.py` - changed by Enter Pro to implement or verify the remediation.
+* `docker-compose.yml` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-a8238f15-3baa-440a-ab6c-fb3f787d4e14.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/79aced65-fd64-4409-89dd-a222ecd9f2de/agent_brief.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/79aced65-fd64-4409-89dd-a222ecd9f2de/agent_payload.json` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/Dockerfile` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/index.html` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/package.json` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/postcss.config.js` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/App.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Card.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Sidebar.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/index.css` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/main.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/Dashboard.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/SignIn.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tailwind.config.js` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/dashboard.salary-preview.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/vite.config.js` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-7b0faad5-5d01-436d-b601-1ebd58032209.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-7b0faad5-5d01-436d-b601-1ebd58032209.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-7b0faad5-5d01-436d-b601-1ebd58032209.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

@@ -37,6 +37,13 @@ function computePreview(form) {
   return { base, allowances, deductions, net };
 }
 
+// Mirrors the projectedPayrollTotal useMemo in Dashboard.jsx: the net payroll
+// already recorded for the month plus the net of the record about to be added.
+function computeProjectedTotal(currentNetPayroll, previewNet) {
+  const current = Number(currentNetPayroll) || 0;
+  return Math.round((current + previewNet) * 100) / 100;
+}
+
 // --- Static / regression checks against the source ---
 
 test("Dashboard renders a net salary preview section", () => {
@@ -53,6 +60,20 @@ test("Preview is derived from the form fields via useMemo", () => {
       `preview dependency list should include salaryForm.${field}`,
     );
   }
+});
+
+test("Dashboard renders a projected cumulative payroll total", () => {
+  assert.match(dashboardSrc, /Projected payroll total/, "cumulative total label should be present in the form");
+  assert.match(
+    dashboardSrc,
+    /const projectedPayrollTotal = useMemo\(/,
+    "projectedPayrollTotal should be a memoized value",
+  );
+  assert.match(
+    dashboardSrc,
+    /projectedPayrollTotal\.toLocaleString\(\)/,
+    "form should render the projected cumulative total",
+  );
 });
 
 test("Existing salary form fields are still present (regression)", () => {
@@ -97,6 +118,17 @@ test("Preview updates as values change (integration of the calculation)", () => 
   assert.equal(computePreview(form).net, 1150);
   form = { ...form, base_salary: "1200" };
   assert.equal(computePreview(form).net, 1350);
+});
+
+test("Projected total adds the new entry's net to the month's recorded payroll", () => {
+  // Current recorded net payroll for the month is 20,634 (from the snapshot).
+  const current = 20634;
+  assert.equal(computeProjectedTotal(current, 1000), 21634);
+  assert.equal(computeProjectedTotal(current, 0), 20634);
+  // Invalid/empty current payroll is treated as 0 (no NaN).
+  const total = computeProjectedTotal(undefined, 500);
+  assert.equal(total, 500);
+  assert.ok(Number.isFinite(total), "projected total should never be NaN");
 });
 
 let failed = 0;
