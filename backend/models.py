@@ -39,6 +39,7 @@ class Employee(TimestampMixin, Base):
     email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
     phone: Mapped[str | None] = mapped_column(String(40), nullable=True)
     country_code: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    gender: Mapped[str | None] = mapped_column(String(30), nullable=True)
     role: Mapped[str] = mapped_column(String(120), nullable=False)
     employment_status: Mapped[str] = mapped_column(String(50), default="Active", nullable=False)
 

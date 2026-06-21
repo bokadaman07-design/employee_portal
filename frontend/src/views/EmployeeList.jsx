@@ -9,6 +9,7 @@ const emptyForm = {
   email: "",
   phone: "",
   country_code: "",
+  gender: "",
   role: "",
   employment_status: "Active",
 };
@@ -55,6 +56,7 @@ export default function EmployeeList() {
       email: employee.email,
       phone: employee.phone || "",
       country_code: employee.country_code || "",
+      gender: employee.gender || "",
       role: employee.role,
       employment_status: employee.employment_status,
     });
@@ -69,7 +71,7 @@ export default function EmployeeList() {
     event.preventDefault();
     setSaving(true);
     setError("");
-    const payload = { ...form, phone: form.phone || null, country_code: form.country_code || null };
+    const payload = { ...form, phone: form.phone || null, country_code: form.country_code || null, gender: form.gender || null };
     try {
       if (editingId) {
         await api.put(`/employees/${editingId}`, payload);
@@ -157,6 +159,16 @@ export default function EmployeeList() {
               <input value={form.phone} onChange={(event) => updateForm("phone", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" />
             </label>
             <label className="sm:col-span-2">
+              <span className="text-sm font-medium text-ink/70">Gender</span>
+              <select value={form.gender} onChange={(event) => updateForm("gender", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2">
+                <option value="">Prefer not to say</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Non-binary</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label className="sm:col-span-2">
               <span className="text-sm font-medium text-ink/70">Role</span>
               <input value={form.role} onChange={(event) => updateForm("role", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
             </label>
@@ -190,6 +202,7 @@ export default function EmployeeList() {
                     <th className="py-2 font-medium">Name</th>
                     <th className="py-2 font-medium">Email</th>
                     <th className="py-2 font-medium">Role</th>
+                    <th className="py-2 font-medium">Gender</th>
                     <th className="py-2 font-medium">Status</th>
                     <th className="py-2 text-right font-medium">Actions</th>
                   </tr>
@@ -200,6 +213,7 @@ export default function EmployeeList() {
                       <td className="py-3 font-medium">{employee.first_name} {employee.last_name}</td>
                       <td className="py-3 text-ink/70">{employee.email}</td>
                       <td className="py-3 text-ink/70">{employee.role}</td>
+                      <td className="py-3 text-ink/70">{employee.gender || "—"}</td>
                       <td className="py-3">
                         <span className="rounded-md bg-mist px-2 py-1 text-xs font-semibold text-ink/70">{employee.employment_status}</span>
                       </td>

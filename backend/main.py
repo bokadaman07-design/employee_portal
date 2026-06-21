@@ -26,11 +26,12 @@ def apply_sqlite_schema_repairs() -> None:
         return
 
     employee_columns = {column["name"] for column in inspector.get_columns("employees")}
-    if "country_code" in employee_columns:
-        return
 
     with engine.begin() as connection:
-        connection.execute(text("ALTER TABLE employees ADD COLUMN country_code VARCHAR(10)"))
+        if "country_code" not in employee_columns:
+            connection.execute(text("ALTER TABLE employees ADD COLUMN country_code VARCHAR(10)"))
+        if "gender" not in employee_columns:
+            connection.execute(text("ALTER TABLE employees ADD COLUMN gender VARCHAR(30)"))
 
 
 def seed_default_admin(db: Session) -> None:
@@ -58,6 +59,7 @@ def seed_sample_employees(db: Session) -> None:
                 last_name="Stone",
                 email="avery.stone@example.com",
                 phone="+1-555-0134",
+                gender="Female",
                 role="People Operations Lead",
                 employment_status="Active",
             ),
@@ -66,6 +68,7 @@ def seed_sample_employees(db: Session) -> None:
                 last_name="Patel",
                 email="mira.patel@example.com",
                 phone="+1-555-0182",
+                gender="Female",
                 role="Product Designer",
                 employment_status="Active",
             ),
