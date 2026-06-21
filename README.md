@@ -69,7 +69,7 @@ The Sign Out button in the navbar (`frontend/src/components/Navbar.jsx`) opens a
 
 ## Currency Display
 
-Monetary values on the Dashboard (`frontend/src/views/Dashboard.jsx`) — the "Net payroll" summary card and the monthly payroll table (Base, Allowances, Deductions, Net) — are displayed in Rupees using the `₹` symbol. The underlying salary amounts are stored and returned by the API as plain numbers; the currency symbol is applied only at the presentation layer.
+Monetary values on the Dashboard (`frontend/src/views/Dashboard.jsx`) — the "Net payroll" summary card and the monthly payroll table (Base, Allowances, Deductions, Net) — are displayed in Dollars using the `$` symbol. The underlying salary amounts are stored and returned by the API as plain numbers; the currency symbol is applied only at the presentation layer.
 
 ## Troubleshooting
 
