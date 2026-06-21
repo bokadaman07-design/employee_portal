@@ -63,6 +63,10 @@ Copy `backend/.env.example` when running outside Docker and provide values as ne
 
 The sign-in page (`frontend/src/views/SignIn.jsx`) starts with empty username and password fields and no longer ships with hardcoded demo credentials. The form and inputs set `autoComplete="off"` (and `autoComplete="new-password"` on the password field) so browsers do not auto-fill saved credentials on the login screen.
 
+## Sign-out Behavior
+
+The Sign Out button in the navbar (`frontend/src/components/Navbar.jsx`) opens an in-app confirmation modal ("Are you sure you want to sign out?") with explicit Confirm and Cancel actions before logging out, preventing accidental logouts. Cancel (or clicking the backdrop) dismisses the dialog and leaves the session intact; Confirm calls `logout()`. The actual token/session clearing remains centralized in `AuthContext.logout` (`frontend/src/context/AuthContext.js`).
+
 ## Troubleshooting
 
 - If login fails after a backend restart, clear browser local storage and sign in again. This can happen when `SECRET_KEY` is not persisted.
