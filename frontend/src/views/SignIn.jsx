@@ -24,35 +24,35 @@ export default function SignIn() {
   }
 
   return (
-    <main className="grid min-h-screen bg-mist md:grid-cols-[1.1fr_0.9fr]">
+    <main className="grid min-h-screen bg-mist md:grid-cols-[1.1fr_0.9fr] dark:bg-night">
       <section className="flex items-center px-6 py-10 md:px-12 lg:px-20">
         <div className="w-full max-w-md">
           <p className="text-sm font-semibold uppercase tracking-normal text-pine">Employee Tracker</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-normal text-ink">Sign in to your people workspace</h1>
-          <p className="mt-3 text-sm leading-6 text-ink/65">
+          <h1 className="mt-3 text-4xl font-semibold tracking-normal text-ink dark:text-fog">Sign in to your people workspace</h1>
+          <p className="mt-3 text-sm leading-6 text-ink/65 dark:text-fog/65">
             Manage employees, payroll records, and leave approvals from a clean operational dashboard.
           </p>
 
-          <form onSubmit={handleSubmit} autoComplete="off" className="mt-8 space-y-4 rounded-lg border border-line bg-white p-5 shadow-soft">
+          <form onSubmit={handleSubmit} autoComplete="off" className="mt-8 space-y-4 rounded-lg border border-line bg-white p-5 shadow-soft dark:border-edge dark:bg-panel">
             {error && <div className="rounded-md border border-coral/30 bg-coral/10 px-3 py-2 text-sm text-coral">{error}</div>}
             <label className="block">
-              <span className="text-sm font-medium text-ink/70">Username</span>
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Username</span>
               <input
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
                 autoComplete="off"
-                className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2"
+                className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge"
                 required
               />
             </label>
             <label className="block">
-              <span className="text-sm font-medium text-ink/70">Password</span>
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Password</span>
               <input
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 type="password"
                 autoComplete="new-password"
-                className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2"
+                className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge"
                 required
               />
             </label>

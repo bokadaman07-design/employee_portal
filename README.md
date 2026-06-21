@@ -75,6 +75,23 @@ Monetary values on the Dashboard (`frontend/src/views/Dashboard.jsx`) — the "N
 
 The "Create salary record" form on the Dashboard (`frontend/src/views/Dashboard.jsx`) shows a live **Net salary preview** that updates in real time as the user types the base salary, allowances, or deductions. The preview mirrors the backend salary contract (`net_salary = base_salary + allowances - deductions`, rounded to 2 decimals; see `backend/routers/salary.py:calculate_net_salary`) so the figure shown before submitting matches the value the API will persist. Empty or non-numeric fields are treated as `0`, so the preview never displays `NaN`. The amount is rendered in Rupees (`₹`) at the presentation layer only.
 
+## Dark Mode
+
+The frontend supports a light/dark theme toggle. Tailwind is configured for
+class-based dark mode (`darkMode: "class"` in `frontend/tailwind.config.js`),
+with a dark surface palette (`night`, `panel`, `edge`, `fog`) mirroring the
+light roles (page background, raised surface, borders, primary text).
+
+Theme state lives in `frontend/src/hooks/useTheme.js` (`ThemeProvider` /
+`useTheme`), mounted around the app in `frontend/src/main.jsx`. On first visit
+the app follows the operating system preference (`prefers-color-scheme`); once
+the user toggles the theme via the navbar button
+(`frontend/src/components/Navbar.jsx`), the explicit choice is persisted to
+`localStorage` under `employee_tracker_theme` and reused on subsequent visits.
+The active theme is applied by toggling the `dark` class on the `<html>`
+element, which activates the `dark:` variants used across the views. The theme
+is a client-side preference only and is not stored on the backend.
+
 ## Troubleshooting
 
 - If login fails after a backend restart, clear browser local storage and sign in again. This can happen when `SECRET_KEY` is not persisted.

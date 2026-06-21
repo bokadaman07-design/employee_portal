@@ -667,3 +667,61 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 13:22 UTC
+
+**Incident:** Add dark mode for the repo
+
+**Documentation Referenced:**
+* file:file_0acJLVq5aj8FXELu9uxoresV, file:file_7anz5e2A7DThT7jWWfHahb2j
+
+**Hypothesis:** The incident of adding dark mode to the repository is caused by the need to update the frontend files to enable class-based dark mode and add theme toggle functionality.
+
+**Reasoning:** The documentation provides a step-by-step guide on how to add dark mode to the repository, which involves updating the frontend files such as tailwind.config.js, main.jsx, and various component files. The guide also provides example code snippets to enable class-based dark mode and add a theme toggle button.
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Update tailwind.config.js to enable class-based dark mode
+* Initialize the saved/system theme before render in main.jsx
+* Add a theme toggle button in Navbar.jsx
+* Add dark: Tailwind classes across the main UI
+* Test locally to verify the changes
+
+**Files Modified:**
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-a8238f15-3baa-440a-ab6c-fb3f787d4e14.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/79aced65-fd64-4409-89dd-a222ecd9f2de/agent_brief.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/79aced65-fd64-4409-89dd-a222ecd9f2de/agent_payload.json` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/App.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Card.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Navbar.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Sidebar.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/hooks/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/index.css` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/main.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/Dashboard.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/EmployeeList.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/LeaveTracker.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/SignIn.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tailwind.config.js` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/dashboard.salary-preview.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/theme.dark-mode.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-cd403e37-7b7d-47b6-a830-04f0a7f8618e.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-cd403e37-7b7d-47b6-a830-04f0a7f8618e.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-cd403e37-7b7d-47b6-a830-04f0a7f8618e.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

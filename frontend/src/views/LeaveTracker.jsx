@@ -110,8 +110,8 @@ export default function LeaveTracker() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-normal text-ink">Leave Tracker</h1>
-          <p className="mt-1 text-sm text-ink/60">Submit, review, approve, and reject leave requests.</p>
+          <h1 className="text-2xl font-semibold tracking-normal text-ink dark:text-fog">Leave Tracker</h1>
+          <p className="mt-1 text-sm text-ink/60 dark:text-fog/60">Submit, review, approve, and reject leave requests.</p>
         </div>
         <select
           value={statusFilter}
@@ -119,7 +119,7 @@ export default function LeaveTracker() {
             setStatusFilter(event.target.value);
             loadLeaves(event.target.value);
           }}
-          className="focus-ring rounded-md border border-line bg-white px-3 py-2 text-sm"
+          className="focus-ring rounded-md border border-line bg-white px-3 py-2 text-sm dark:border-edge dark:bg-panel dark:text-fog"
         >
           <option value="">All statuses</option>
           <option value="Pending">Pending</option>
@@ -138,12 +138,12 @@ export default function LeaveTracker() {
       </div>
 
       <section className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
-        <form onSubmit={handleSubmit} className="rounded-lg border border-line bg-white p-5 shadow-soft">
-          <h2 className="text-lg font-semibold text-ink">Submit leave request</h2>
+        <form onSubmit={handleSubmit} className="rounded-lg border border-line bg-white p-5 shadow-soft dark:border-edge dark:bg-panel">
+          <h2 className="text-lg font-semibold text-ink dark:text-fog">Submit leave request</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <label className="sm:col-span-2">
-              <span className="text-sm font-medium text-ink/70">Employee</span>
-              <select value={form.employee_id} onChange={(event) => updateForm("employee_id", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required>
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Employee</span>
+              <select value={form.employee_id} onChange={(event) => updateForm("employee_id", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" required>
                 <option value="">Select employee</option>
                 {employees.map((employee) => (
                   <option key={employee.id} value={employee.id}>{employee.first_name} {employee.last_name}</option>
@@ -151,8 +151,8 @@ export default function LeaveTracker() {
               </select>
             </label>
             <label>
-              <span className="text-sm font-medium text-ink/70">Type</span>
-              <select value={form.leave_type} onChange={(event) => updateForm("leave_type", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2">
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Type</span>
+              <select value={form.leave_type} onChange={(event) => updateForm("leave_type", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge">
                 <option>Annual</option>
                 <option>Sick</option>
                 <option>Personal</option>
@@ -160,17 +160,17 @@ export default function LeaveTracker() {
               </select>
             </label>
             <label>
-              <span className="text-sm font-medium text-ink/70">Start date</span>
-              <input value={form.start_date} onChange={(event) => updateForm("start_date", event.target.value)} type="date" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Start date</span>
+              <input value={form.start_date} onChange={(event) => updateForm("start_date", event.target.value)} type="date" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" required />
             </label>
             <label>
-              <span className="text-sm font-medium text-ink/70">End date</span>
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">End date</span>
               {/* min={form.start_date} stops users picking an end date earlier than the start date once a start date is set. */}
-              <input value={form.end_date} onChange={(event) => updateForm("end_date", event.target.value)} type="date" min={form.start_date || undefined} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
+              <input value={form.end_date} onChange={(event) => updateForm("end_date", event.target.value)} type="date" min={form.start_date || undefined} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" required />
             </label>
             <label className="sm:col-span-2">
-              <span className="text-sm font-medium text-ink/70">Reason <span className="text-coral">*</span></span>
-              <textarea value={form.reason} onChange={(event) => updateForm("reason", event.target.value)} className="focus-ring mt-1 min-h-24 w-full rounded-md border border-line px-3 py-2" required />
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Reason <span className="text-coral">*</span></span>
+              <textarea value={form.reason} onChange={(event) => updateForm("reason", event.target.value)} className="focus-ring mt-1 min-h-24 w-full rounded-md border border-line px-3 py-2 dark:border-edge" required />
             </label>
           </div>
           <button disabled={saving} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">
@@ -179,23 +179,23 @@ export default function LeaveTracker() {
           </button>
         </form>
 
-        <section className="rounded-lg border border-line bg-white p-5 shadow-soft">
-          <h2 className="text-lg font-semibold text-ink">Requests</h2>
+        <section className="rounded-lg border border-line bg-white p-5 shadow-soft dark:border-edge dark:bg-panel">
+          <h2 className="text-lg font-semibold text-ink dark:text-fog">Requests</h2>
           {loading ? (
-            <p className="mt-4 text-sm text-ink/55">Loading leave requests...</p>
+            <p className="mt-4 text-sm text-ink/55 dark:text-fog/55">Loading leave requests...</p>
           ) : leaves.length === 0 ? (
-            <p className="mt-4 rounded-md border border-dashed border-line px-4 py-8 text-center text-sm text-ink/55">No leave requests found.</p>
+            <p className="mt-4 rounded-md border border-dashed border-line px-4 py-8 text-center text-sm text-ink/55 dark:border-edge dark:text-fog/55">No leave requests found.</p>
           ) : (
             <div className="mt-4 space-y-3">
               {leaves.map((leave) => (
-                <article key={leave.id} className="rounded-lg border border-line p-4">
+                <article key={leave.id} className="rounded-lg border border-line p-4 dark:border-edge">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div>
-                      <p className="font-semibold text-ink">{employeeName(leave.employee_id)}</p>
-                      <p className="mt-1 text-sm text-ink/60">{leave.leave_type} leave from {leave.start_date} to {leave.end_date}</p>
-                      {leave.reason && <p className="mt-2 text-sm text-ink/70">{leave.reason}</p>}
+                      <p className="font-semibold text-ink dark:text-fog">{employeeName(leave.employee_id)}</p>
+                      <p className="mt-1 text-sm text-ink/60 dark:text-fog/60">{leave.leave_type} leave from {leave.start_date} to {leave.end_date}</p>
+                      {leave.reason && <p className="mt-2 text-sm text-ink/70 dark:text-fog/70">{leave.reason}</p>}
                     </div>
-                    <span className="w-fit rounded-md bg-mist px-2 py-1 text-xs font-semibold text-ink/70">{leave.status}</span>
+                    <span className="w-fit rounded-md bg-mist px-2 py-1 text-xs font-semibold text-ink/70 dark:bg-edge dark:text-fog/70">{leave.status}</span>
                   </div>
                   {leave.status === "Pending" && (
                     <div className="mt-4 flex gap-2">

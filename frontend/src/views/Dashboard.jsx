@@ -156,10 +156,10 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-normal text-ink">Dashboard</h1>
-          <p className="mt-1 text-sm text-ink/60">Workforce, leave, and payroll signals for the current month.</p>
+          <h1 className="text-2xl font-semibold tracking-normal text-ink dark:text-fog">Dashboard</h1>
+          <p className="mt-1 text-sm text-ink/60 dark:text-fog/60">Workforce, leave, and payroll signals for the current month.</p>
         </div>
-        <button onClick={loadDashboard} className="focus-ring inline-flex items-center gap-2 rounded-md border border-line bg-white px-3 py-2 text-sm font-semibold text-ink">
+        <button onClick={loadDashboard} className="focus-ring inline-flex items-center gap-2 rounded-md border border-line bg-white px-3 py-2 text-sm font-semibold text-ink dark:border-edge dark:bg-panel dark:text-fog">
           <RefreshCw size={16} />
           Refresh
         </button>
@@ -175,15 +175,15 @@ export default function Dashboard() {
       </div>
 
       <section className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-        <form onSubmit={handleSalarySubmit} className="rounded-lg border border-line bg-white p-5 shadow-soft">
-          <h2 className="text-lg font-semibold text-ink">Create salary record</h2>
+        <form onSubmit={handleSalarySubmit} className="rounded-lg border border-line bg-white p-5 shadow-soft dark:border-edge dark:bg-panel">
+          <h2 className="text-lg font-semibold text-ink dark:text-fog">Create salary record</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <label className="sm:col-span-2">
-              <span className="text-sm font-medium text-ink/70">Employee</span>
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Employee</span>
               <select
                 value={salaryForm.employee_id}
                 onChange={(event) => setSalaryForm({ ...salaryForm, employee_id: event.target.value })}
-                className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2"
+                className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge"
                 required
               >
                 <option value="">Select employee</option>
@@ -195,36 +195,36 @@ export default function Dashboard() {
               </select>
             </label>
             <label>
-              <span className="text-sm font-medium text-ink/70">Base salary</span>
-              <input value={salaryForm.base_salary} onChange={(event) => setSalaryForm({ ...salaryForm, base_salary: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Base salary</span>
+              <input value={salaryForm.base_salary} onChange={(event) => setSalaryForm({ ...salaryForm, base_salary: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" required />
             </label>
             <label>
-              <span className="text-sm font-medium text-ink/70">Month</span>
-              <input value={salaryForm.month} onChange={(event) => setSalaryForm({ ...salaryForm, month: event.target.value })} type="month" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Month</span>
+              <input value={salaryForm.month} onChange={(event) => setSalaryForm({ ...salaryForm, month: event.target.value })} type="month" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" required />
             </label>
             <label>
-              <span className="text-sm font-medium text-ink/70">Allowances</span>
-              <input value={salaryForm.allowances} onChange={(event) => setSalaryForm({ ...salaryForm, allowances: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" />
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Allowances</span>
+              <input value={salaryForm.allowances} onChange={(event) => setSalaryForm({ ...salaryForm, allowances: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" />
             </label>
             <label>
-              <span className="text-sm font-medium text-ink/70">Deductions</span>
-              <input value={salaryForm.deductions} onChange={(event) => setSalaryForm({ ...salaryForm, deductions: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" />
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Deductions</span>
+              <input value={salaryForm.deductions} onChange={(event) => setSalaryForm({ ...salaryForm, deductions: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" />
             </label>
           </div>
           {/* Live total preview: updates in real time as base salary,
               allowances, or deductions change, so the user can confirm the net
               amount before submitting. Matches the backend salary contract. */}
-          <div className="mt-4 rounded-md border border-line bg-mist/40 px-4 py-3">
-            <div className="flex items-center justify-between text-sm text-ink/70">
+          <div className="mt-4 rounded-md border border-line bg-mist/40 px-4 py-3 dark:border-edge dark:bg-night/40">
+            <div className="flex items-center justify-between text-sm text-ink/70 dark:text-fog/70">
               <span>Base + allowances − deductions</span>
               <span>
                 ₹{salaryPreview.base.toLocaleString()} + ₹{salaryPreview.allowances.toLocaleString()} − ₹
                 {salaryPreview.deductions.toLocaleString()}
               </span>
             </div>
-            <div className="mt-2 flex items-center justify-between border-t border-line pt-2">
-              <span className="text-sm font-medium text-ink/70">Net salary preview</span>
-              <span className="text-lg font-semibold text-ink">₹{salaryPreview.net.toLocaleString()}</span>
+            <div className="mt-2 flex items-center justify-between border-t border-line pt-2 dark:border-edge">
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Net salary preview</span>
+              <span className="text-lg font-semibold text-ink dark:text-fog">₹{salaryPreview.net.toLocaleString()}</span>
             </div>
           </div>
           <button disabled={saving} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">
@@ -233,14 +233,14 @@ export default function Dashboard() {
           </button>
         </form>
 
-        <section className="rounded-lg border border-line bg-white p-5 shadow-soft">
-          <h2 className="text-lg font-semibold text-ink">Monthly payroll</h2>
+        <section className="rounded-lg border border-line bg-white p-5 shadow-soft dark:border-edge dark:bg-panel">
+          <h2 className="text-lg font-semibold text-ink dark:text-fog">Monthly payroll</h2>
           {salaryRecords.length === 0 ? (
-            <p className="mt-4 rounded-md border border-dashed border-line px-4 py-8 text-center text-sm text-ink/55">No salary records for this month.</p>
+            <p className="mt-4 rounded-md border border-dashed border-line px-4 py-8 text-center text-sm text-ink/55 dark:border-edge dark:text-fog/55">No salary records for this month.</p>
           ) : (
             <div className="mt-4 overflow-x-auto">
               <table className="w-full min-w-[620px] text-left text-sm">
-                <thead className="border-b border-line text-ink/55">
+                <thead className="border-b border-line text-ink/55 dark:border-edge dark:text-fog/55">
                   <tr>
                     <th className="py-2 font-medium">Employee ID</th>
                     <th className="py-2 font-medium">Base</th>
@@ -249,7 +249,7 @@ export default function Dashboard() {
                     <th className="py-2 font-medium">Net</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-line">
+                <tbody className="divide-y divide-line text-ink dark:divide-edge dark:text-fog">
                   {salaryRecords.map((record) => (
                     <tr key={record.id}>
                       <td className="py-3">{record.employee_id}</td>
