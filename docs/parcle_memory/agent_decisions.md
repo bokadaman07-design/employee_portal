@@ -81,3 +81,40 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 06:37 UTC
+
+**Incident:** In leave request page make the reason a mandatory field.
+
+**Documentation Referenced:**
+* file:file_8GNSw65BUvGi5OfMaJ4wVMX, file:file_ceU6R96mA0gOYxIEfv8eLyp2
+
+**Hypothesis:** The reason field in the leave request page is not mandatory
+
+**Reasoning:** The documentation suggests making the reason field mandatory and provides a suggested implementation. The incident report also mentions making the reason field mandatory, which aligns with the documentation.
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Add client-side validation for the reason field
+* Mark the reason input/textarea as required in the UI
+
+**Files Modified:**
+* `docs/parcle_memory/API_DOCUMENTATION.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-18b655c9-a241-46f3-8473-5e8c091ccdb4.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-dashboard-load-resilience.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-unable-to-load-dashboard-data.md` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/context/AuthContext.js` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/LeaveTracker.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

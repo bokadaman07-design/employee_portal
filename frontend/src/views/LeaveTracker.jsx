@@ -70,12 +70,17 @@ export default function LeaveTracker() {
       setError("End date cannot be before the start date.");
       return;
     }
+    const trimmedReason = form.reason.trim();
+    if (!trimmedReason) {
+      setError("Reason is required.");
+      return;
+    }
     setSaving(true);
     try {
       await api.post("/leaves/", {
         ...form,
         employee_id: Number(form.employee_id),
-        reason: form.reason || null,
+        reason: trimmedReason,
       });
       setForm(emptyLeaveForm);
       await loadLeaves();
@@ -164,8 +169,8 @@ export default function LeaveTracker() {
               <input value={form.end_date} onChange={(event) => updateForm("end_date", event.target.value)} type="date" min={form.start_date || undefined} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
             </label>
             <label className="sm:col-span-2">
-              <span className="text-sm font-medium text-ink/70">Reason</span>
-              <textarea value={form.reason} onChange={(event) => updateForm("reason", event.target.value)} className="focus-ring mt-1 min-h-24 w-full rounded-md border border-line px-3 py-2" />
+              <span className="text-sm font-medium text-ink/70">Reason <span className="text-coral">*</span></span>
+              <textarea value={form.reason} onChange={(event) => updateForm("reason", event.target.value)} className="focus-ring mt-1 min-h-24 w-full rounded-md border border-line px-3 py-2" required />
             </label>
           </div>
           <button disabled={saving} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">
