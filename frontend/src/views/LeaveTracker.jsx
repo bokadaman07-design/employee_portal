@@ -160,7 +160,8 @@ export default function LeaveTracker() {
             </label>
             <label>
               <span className="text-sm font-medium text-ink/70">End date</span>
-              <input value={form.end_date} onChange={(event) => updateForm("end_date", event.target.value)} type="date" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
+              {/* min={form.start_date} stops users picking an end date earlier than the start date once a start date is set. */}
+              <input value={form.end_date} onChange={(event) => updateForm("end_date", event.target.value)} type="date" min={form.start_date || undefined} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
             </label>
             <label className="sm:col-span-2">
               <span className="text-sm font-medium text-ink/70">Reason</span>
