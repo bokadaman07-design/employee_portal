@@ -72,6 +72,10 @@ Response:
 
 ## Employees
 
+Employee records carry an optional `phone` and an optional `country_code`
+(max 10 chars, e.g. `"+1"`). Both are nullable and independent — omitting them
+keeps the value `null`.
+
 ### POST /employees/
 
 Request:
@@ -82,6 +86,7 @@ Request:
   "last_name": "Lee",
   "email": "jordan.lee@example.com",
   "phone": "+1-555-0101",
+  "country_code": "+1",
   "role": "Engineering Manager",
   "employment_status": "Active"
 }
@@ -96,6 +101,7 @@ Response: `201 Created`
   "last_name": "Lee",
   "email": "jordan.lee@example.com",
   "phone": "+1-555-0101",
+  "country_code": "+1",
   "role": "Engineering Manager",
   "employment_status": "Active",
   "created_at": "2026-06-20T12:00:00",
