@@ -41,19 +41,64 @@ export default function Dashboard() {
   async function loadDashboard() {
     setError("");
     setLoading(true);
+
+    // The selected month drives both salary widgets; keep them in sync so the
+    // summary and the records list always describe the same period.
+    const month = salaryForm.month || currentMonth;
+
+    // Each widget is loaded independently with Promise.allSettled so that one
+    // failing endpoint (auth loss, bad VITE_API_URL, a single 5xx, etc.) only
+    // affects its own card instead of blanking the whole dashboard.
+    const requests = [
+      { key: "employees", label: "employees", request: api.get("/employees/") },
+      { key: "leaveSummary", label: "leave summary", request: api.get("/leaves/summary") },
+      {
+        key: "payrollSummary",
+        label: "salary summary",
+        request: api.get("/salary/summary", { params: { month } }),
+      },
+      {
+        key: "salaryRecords",
+        label: "salary records",
+        request: api.get("/salary/", { params: { month } }),
+      },
+    ];
+
     try {
-      const [employeeRes, leaveRes, payrollRes, salaryRes] = await Promise.all([
-        api.get("/employees/"),
-        api.get("/leaves/summary"),
-        api.get("/salary/summary", { params: { month: salaryForm.month || currentMonth } }),
-        api.get("/salary/", { params: { month: salaryForm.month || currentMonth } }),
-      ]);
-      setEmployees(employeeRes.data);
-      setLeaveSummary(leaveRes.data);
-      setPayrollSummary(payrollRes.data);
-      setSalaryRecords(salaryRes.data);
-    } catch (err) {
-      setError(getErrorMessage(err, "Unable to load dashboard data"));
+      const results = await Promise.allSettled(requests.map((entry) => entry.request));
+      const failedEndpoints = [];
+
+      results.forEach((result, index) => {
+        const entry = requests[index];
+        if (result.status === "fulfilled") {
+          switch (entry.key) {
+            case "employees":
+              setEmployees(result.value.data);
+              break;
+            case "leaveSummary":
+              setLeaveSummary(result.value.data);
+              break;
+            case "payrollSummary":
+              setPayrollSummary(result.value.data);
+              break;
+            case "salaryRecords":
+              setSalaryRecords(result.value.data);
+              break;
+            default:
+              break;
+          }
+        } else {
+          // Surface the exact endpoint that failed instead of a generic message
+          // so the failure is actionable in the UI and the console.
+          const reason = getErrorMessage(result.reason, "request failed");
+          failedEndpoints.push(`${entry.label} (${reason})`);
+          console.error(`Dashboard widget "${entry.label}" failed to load:`, result.reason);
+        }
+      });
+
+      if (failedEndpoints.length > 0) {
+        setError(`Unable to load: ${failedEndpoints.join(", ")}`);
+      }
     } finally {
       setLoading(false);
     }
