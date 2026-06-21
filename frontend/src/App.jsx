@@ -13,7 +13,7 @@ function ProtectedLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-mist md:flex">
+    <div className="min-h-screen bg-mist md:flex dark:bg-night">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="min-w-0 flex-1">
         <Navbar onMenuClick={() => setSidebarOpen(true)} />
@@ -32,7 +32,7 @@ function ProtectedLayout() {
 function ProtectedRoute({ children }) {
   const { initializing, isAuthenticated } = useAuth();
   if (initializing) {
-    return <div className="flex min-h-screen items-center justify-center bg-mist text-ink/70">Loading workspace...</div>;
+    return <div className="flex min-h-screen items-center justify-center bg-mist text-ink/70 dark:bg-night dark:text-fog/70">Loading workspace...</div>;
   }
   return isAuthenticated ? children : <Navigate to="/signin" replace />;
 }
