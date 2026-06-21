@@ -78,6 +78,44 @@ test("Dialog is rendered only when confirmation is open", () => {
   );
 });
 
+test("Dialog is centered on the viewport, not trapped inside the header", () => {
+  // The header uses backdrop-blur, which creates a containing block for any
+  // position:fixed descendant. Rendering the dialog through a portal into
+  // document.body lets `fixed inset-0` center on the viewport instead of the
+  // top-right of the header bar.
+  assert.match(
+    navbarSrc,
+    /import\s*\{\s*createPortal\s*\}\s*from\s*["']react-dom["']/,
+    "Navbar should import createPortal from react-dom",
+  );
+  assert.match(
+    navbarSrc,
+    /createPortal\(/,
+    "Confirmation dialog should be rendered via createPortal",
+  );
+  assert.match(
+    navbarSrc,
+    /document\.body\s*,?\s*\)/,
+    "Confirmation dialog portal should target document.body",
+  );
+  // The overlay must still center its contents.
+  assert.match(
+    navbarSrc,
+    /fixed inset-0[^"']*flex items-center justify-center/,
+    "Overlay should center the dialog with flex items-center justify-center",
+  );
+});
+
+test("Sign out button has no leftover duplicate handlers", () => {
+  // A stale onClick={logout} alongside the confirmation trigger would log the
+  // user out without confirming and is invalid duplicate JSX.
+  assert.doesNotMatch(
+    navbarSrc,
+    /onClick=\{logout\}/,
+    "Sign out button must not retain a direct onClick={logout} handler",
+  );
+});
+
 test("Token/session clearing logic stays centralized in AuthContext.logout", () => {
   assert.match(
     authSrc,
