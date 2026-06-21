@@ -5,8 +5,8 @@ import { useAuth } from "../context/AuthContext";
 
 export default function SignIn() {
   const { login } = useAuth();
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("admin123");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -33,13 +33,14 @@ export default function SignIn() {
             Manage employees, payroll records, and leave approvals from a clean operational dashboard.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-8 space-y-4 rounded-lg border border-line bg-white p-5 shadow-soft">
+          <form onSubmit={handleSubmit} autoComplete="off" className="mt-8 space-y-4 rounded-lg border border-line bg-white p-5 shadow-soft">
             {error && <div className="rounded-md border border-coral/30 bg-coral/10 px-3 py-2 text-sm text-coral">{error}</div>}
             <label className="block">
               <span className="text-sm font-medium text-ink/70">Username</span>
               <input
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
+                autoComplete="off"
                 className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2"
                 required
               />
@@ -50,6 +51,7 @@ export default function SignIn() {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 type="password"
+                autoComplete="new-password"
                 className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2"
                 required
               />
@@ -67,10 +69,10 @@ export default function SignIn() {
       </section>
       <section className="hidden bg-ink p-8 text-white md:flex md:items-end">
         <div>
-          <p className="text-sm uppercase tracking-normal text-white/55">Default admin</p>
-          <p className="mt-2 text-2xl font-semibold">admin / admin123</p>
+          <p className="text-sm uppercase tracking-normal text-white/55">Secure access</p>
+          <p className="mt-2 text-2xl font-semibold">Your people workspace</p>
           <p className="mt-3 max-w-md text-sm leading-6 text-white/65">
-            Credentials are seeded with bcrypt hashing on backend startup and can be replaced when RBAC is added.
+            Sign in with the credentials provisioned for your account. Passwords are stored with bcrypt hashing on the backend.
           </p>
         </div>
       </section>
