@@ -59,6 +59,10 @@ Copy `backend/.env.example` when running outside Docker and provide values as ne
 - `DATABASE_URL`: SQLAlchemy database URL.
 - `CORS_ORIGINS`: comma-separated list of allowed frontend origins.
 
+## Sign-in Behavior
+
+The sign-in page (`frontend/src/views/SignIn.jsx`) starts with empty username and password fields and no longer ships with hardcoded demo credentials. The form and inputs set `autoComplete="off"` (and `autoComplete="new-password"` on the password field) so browsers do not auto-fill saved credentials on the login screen.
+
 ## Troubleshooting
 
 - If login fails after a backend restart, clear browser local storage and sign in again. This can happen when `SECRET_KEY` is not persisted.
