@@ -72,6 +72,18 @@ Response:
 
 ## Employees
 
+An employee stores the dial code and the subscriber number as two separate,
+independently optional fields:
+
+- `country_code` (string, optional, max 10 chars): the international dial code,
+  e.g. `+1` or `+44`. It is **not** part of `phone` and is never derived from it.
+- `phone` (string, optional, max 40 chars): the local/subscriber number without
+  the dial code.
+
+Both fields default to `null` when omitted and may be cleared independently by
+sending `null`. Legacy employees created before this field existed keep
+`country_code` as `null` and unrelated edits never invent a value for them.
+
 ### POST /employees/
 
 Request:
@@ -81,7 +93,8 @@ Request:
   "first_name": "Jordan",
   "last_name": "Lee",
   "email": "jordan.lee@example.com",
-  "phone": "+1-555-0101",
+  "country_code": "+1",
+  "phone": "555-0101",
   "role": "Engineering Manager",
   "employment_status": "Active"
 }
@@ -95,7 +108,8 @@ Response: `201 Created`
   "first_name": "Jordan",
   "last_name": "Lee",
   "email": "jordan.lee@example.com",
-  "phone": "+1-555-0101",
+  "country_code": "+1",
+  "phone": "555-0101",
   "role": "Engineering Manager",
   "employment_status": "Active",
   "created_at": "2026-06-20T12:00:00",

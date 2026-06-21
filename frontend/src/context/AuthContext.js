@@ -31,6 +31,28 @@ export function AuthProvider({ children }) {
   }, [token]);
 
   useEffect(() => {
+    // When an authenticated request comes back 401 (e.g. an expired or
+    // invalidated JWT), clear the session so the app redirects to sign-in
+    // instead of leaving the user on a screen that only shows "Unable to
+    // load data". The `token` guard avoids logging out on the login request
+    // itself, which legitimately returns 401 for bad credentials.
+    const interceptorId = api.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401 && token) {
+          setToken(null);
+          setUser(null);
+          localStorage.removeItem("employee_tracker_user");
+        }
+        return Promise.reject(error);
+      },
+    );
+    return () => {
+      api.interceptors.response.eject(interceptorId);
+    };
+  }, [token]);
+
+  useEffect(() => {
     let mounted = true;
     async function hydrateUser() {
       if (!token) {
