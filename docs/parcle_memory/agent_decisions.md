@@ -510,3 +510,48 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 10:42 UTC
+
+**Incident:** The currency in the repo every where should be changed to dollors
+
+**Documentation Referenced:**
+* file:file_6YFnWjXuChMesn1PS9aeIP5P
+
+**Hypothesis:** Currency mismatch due to conflicting update requests
+
+**Reasoning:** The initial request was to change the currency from Dollars to Rupees, but the new request conflicts with this by asking to change the currency to Dollars everywhere, indicating a potential miscommunication or change in requirements
+
+**Confidence:** 80%
+
+**Remediation Strategy:**
+* Replace Rupee display symbols/labels with Dollar display
+* Update related tests/docs accordingly
+
+**Files Modified:**
+* `API_DOCUMENTATION.md` - changed by Enter Pro to implement or verify the remediation.
+* `PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-72334418-72ab-4ded-9742-22870ec5f3e8.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-currency-rupees-to-dollars.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-signout-confirmation-centering.md` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/Dashboard.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/dashboard.currency.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-523e63ca-5bd5-4238-aa08-a5650adc9d0d.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-523e63ca-5bd5-4238-aa08-a5650adc9d0d.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-523e63ca-5bd5-4238-aa08-a5650adc9d0d.md`.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---
