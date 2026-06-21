@@ -38,6 +38,23 @@ export default function Dashboard() {
     [employees],
   );
 
+  // Live preview of the net salary the backend will compute on submit. This
+  // mirrors the backend contract (net_salary = base_salary + allowances -
+  // deductions, rounded to 2 decimals) so the user sees the same figure that
+  // will be persisted. Empty/invalid inputs are treated as 0 so the preview
+  // never shows NaN while the form is being filled in.
+  const salaryPreview = useMemo(() => {
+    const toNumber = (value) => {
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : 0;
+    };
+    const base = toNumber(salaryForm.base_salary);
+    const allowances = toNumber(salaryForm.allowances);
+    const deductions = toNumber(salaryForm.deductions);
+    const net = Math.round((base + allowances - deductions) * 100) / 100;
+    return { base, allowances, deductions, net };
+  }, [salaryForm.base_salary, salaryForm.allowances, salaryForm.deductions]);
+
   async function loadDashboard() {
     setError("");
     setLoading(true);
@@ -193,6 +210,22 @@ export default function Dashboard() {
               <span className="text-sm font-medium text-ink/70">Deductions</span>
               <input value={salaryForm.deductions} onChange={(event) => setSalaryForm({ ...salaryForm, deductions: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" />
             </label>
+          </div>
+          {/* Live total preview: updates in real time as base salary,
+              allowances, or deductions change, so the user can confirm the net
+              amount before submitting. Matches the backend salary contract. */}
+          <div className="mt-4 rounded-md border border-line bg-mist/40 px-4 py-3">
+            <div className="flex items-center justify-between text-sm text-ink/70">
+              <span>Base + allowances − deductions</span>
+              <span>
+                ₹{salaryPreview.base.toLocaleString()} + ₹{salaryPreview.allowances.toLocaleString()} − ₹
+                {salaryPreview.deductions.toLocaleString()}
+              </span>
+            </div>
+            <div className="mt-2 flex items-center justify-between border-t border-line pt-2">
+              <span className="text-sm font-medium text-ink/70">Net salary preview</span>
+              <span className="text-lg font-semibold text-ink">₹{salaryPreview.net.toLocaleString()}</span>
+            </div>
           </div>
           <button disabled={saving} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">
             <Plus size={16} />

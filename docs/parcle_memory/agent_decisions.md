@@ -600,3 +600,70 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 11:15 UTC
+
+**Incident:** Produck feedback ticket 79aced65-fd64-4409-89dd-a222ecd9f2de: Add total preview section for salary entry
+
+Classification: feature
+Priority: medium
+Affected route: /
+
+Problem:
+No total preview is shown while entering salary details
+
+Reproduction / evidence:
+- Go to the salary entry page
+- Enter salary details
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='Before adding the salary as there no preview of what total amount I am adding I need a total preview section', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['main > div > section > form'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Add a total preview element to the salary entry flow
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_0acJLVq5aj8FXELu9uxoresV, file:file_KFXjVgOpiyWzw7n3muANMzrx, file:file_7anz5e2A7DThT7jWWfHahb2j
+
+**Hypothesis:** The frontend code in Dashboard.jsx does not calculate and display a live total preview of the salary while the user is entering the details
+
+**Reasoning:** The incident report and documentation suggest that the issue is with the frontend not displaying a total preview of the salary. The calculation for the total preview can be done client-side using the form values before submission, and the relevant code for this calculation and display is likely in the Dashboard.jsx file.
+
+**Confidence:** 80%
+
+**Remediation Strategy:**
+* Update the Dashboard.jsx file to calculate and display a live total preview of the salary
+* Use the form values to calculate the total preview before submission
+
+**Files Modified:**
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-c646fafc-4ae4-47f0-aecd-0c8efe11b897.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-currency-dollars-to-rupees.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/79aced65-fd64-4409-89dd-a222ecd9f2de/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/Dashboard.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/dashboard.salary-preview.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-a8238f15-3baa-440a-ab6c-fb3f787d4e14.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-a8238f15-3baa-440a-ab6c-fb3f787d4e14.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-a8238f15-3baa-440a-ab6c-fb3f787d4e14.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

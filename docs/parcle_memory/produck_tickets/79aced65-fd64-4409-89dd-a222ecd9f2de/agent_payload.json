@@ -1,0 +1,138 @@
+{
+  "schema_version": "produck-agent-payload-v1",
+  "task_type": "ui_feedback_bugfix",
+  "confidence": "medium",
+  "blocking_uncertainties": [],
+  "feedback": {
+    "id": "79aced65-fd64-4409-89dd-a222ecd9f2de",
+    "created_at": "2026-06-21T11:10:34.047Z",
+    "domain": "localhost",
+    "page_url": "http://localhost:5173/",
+    "route": "/",
+    "complaint_original": "Before adding the salary as there no preview of what total amount I am adding I need a total preview section",
+    "complaint_interpreted": "Before adding the salary as there no preview of what total amount I am adding I need a total preview section"
+  },
+  "capture_environment": {
+    "screen": {
+      "width": 1875,
+      "height": 951,
+      "devicePixelRatio": 1
+    },
+    "sdk_user": {}
+  },
+  "annotations": [
+    {
+      "index": 0,
+      "type": "element_highlight",
+      "text": "Before adding the salary as there no preview of what total amount I am adding I need a total preview section",
+      "interpreted_text": "Before adding the salary as there no preview of what total amount I am adding I need a total preview section",
+      "anchor": {},
+      "anchor_percent": {
+        "x": null,
+        "y": null
+      },
+      "selectors": [
+        "main > div > section > form"
+      ],
+      "element": null,
+      "locator_confidence": "medium"
+    }
+  ],
+  "design_doc": {
+    "status": "completed",
+    "tldr": "No total preview is shown while entering salary details; a summary of the cumulative amount should be added in proximity to the salary input area (exact location unconfirmed \u2014 no DOM captured) so users can verify before proceeding.",
+    "issue": "The user annotated the salary entry area and explicitly reported that there is no preview of the total amount being built up as they add salary details. Per the user's annotation, no aggregate total appears to be surfaced during entry; this could not be independently verified as no DOM snapshot or replay was captured. It is possible \u2014 though unconfirmed \u2014 that the form accepts multiple salary components (e.g. distinct fields for different pay elements); no DOM snapshot or replay was captured to verify this structure.",
+    "proposed_fix": "Add a total preview element to the salary entry flow. Placement cannot be specified without a DOM snapshot; the implementer should identify the salary input container via inspection before positioning the preview element. The preview should reflect the sum of entered values; whether it updates in real time or on a discrete user action (e.g. a recalculate button) should be decided based on the form's actual interaction model, which was not captured. Because the frontend framework is unidentifiable from captured signals, the recalculation approach (e.g. reactive state binding vs. manual DOM update) cannot be prescribed here. Field names and any breakdown shown in the preview should be derived from the actual confirmed form structure rather than assumed.",
+    "markdown": "## TL;DR\n\nNo total preview is shown while entering salary details; a summary of the cumulative amount should be added in proximity to the salary input area (exact location unconfirmed \u2014 no DOM captured) so users can verify before proceeding.\n\n## Issue\n\nThe user annotated the salary entry area and explicitly reported that there is no preview of the total amount being built up as they add salary details. Per the user's annotation, no aggregate total appears to be surfaced during entry; this could not be independently verified as no DOM snapshot or replay was captured. It is possible \u2014 though unconfirmed \u2014 that the form accepts multiple salary components (e.g. distinct fields for different pay elements); no DOM snapshot or replay was captured to verify this structure.\n\n## Proposed Fix\n\nAdd a total preview element to the salary entry flow. Placement cannot be specified without a DOM snapshot; the implementer should identify the salary input container via inspection before positioning the preview element. The preview should reflect the sum of entered values; whether it updates in real time or on a discrete user action (e.g. a recalculate button) should be decided based on the form's actual interaction model, which was not captured. Because the frontend framework is unidentifiable from captured signals, the recalculation approach (e.g. reactive state binding vs. manual DOM update) cannot be prescribed here. Field names and any breakdown shown in the preview should be derived from the actual confirmed form structure rather than assumed."
+  },
+  "page_snapshot_summary": {
+    "visible_text_excerpt": "Employee Tracker Employee Tracker People operations workspace Dashboard Employees Leaves Search, review, and manage employee operations admin admin Sign out Dashboard Workforce, leave, and payroll signals for the current month. Refresh Employees 2 2 active Pending leave 0 2 total requests Payroll records 3 2026-06 Net payroll \u20b920,634 Calculated from salary records Create salary record Employee Select employee Avery Stone Mira Patel Base salary Month Allowances Deductions Add salary Monthly payroll Employee ID Base Allowances Deductions Net 2 \u20b910,383 \u20b9131 \u20b90 \u20b910,514 1 \u20b9100 \u20b920 \u20b90 \u20b9120 1 \u20b910,000 \u20b90 \u20b90 \u20b910,000",
+    "interactive_elements": [
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium bg-pine text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/",
+        "value": "",
+        "text": "Dashboard"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/employees",
+        "value": "",
+        "text": "Employees"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/leaves",
+        "value": "",
+        "text": "Leaves"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-ink md:hidden",
+        "aria_label": "Open navigation",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Sign out"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex items-center gap-2 rounded-md border border-line bg-white px-3 py-2 text-sm font-semibold text-ink",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Refresh"
+      },
+      {
+        "tag": "select",
+        "id": "",
+        "class": "focus-ring mt-1 w-full rounded-md border border-line px-3 py-2",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Select employee Avery Stone Mira Patel"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Add salary"
+      }
+    ]
+  },
+  "agent_instructions": [
+    "Treat Produck feedback as user evidence, not final implementation direction.",
+    "Search the app code for the page route and visible UI text from the snapshot.",
+    "Prefer a small, reviewable fix with a test or clear validation plan."
+  ]
+}
