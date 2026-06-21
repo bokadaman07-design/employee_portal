@@ -1,0 +1,138 @@
+{
+  "schema_version": "produck-agent-payload-v1",
+  "task_type": "ui_feedback_bugfix",
+  "confidence": "medium",
+  "blocking_uncertainties": [],
+  "feedback": {
+    "id": "3e5e56af-b0a7-4d4b-b7e6-a4de61c18d45",
+    "created_at": "2026-06-21T09:17:35.807Z",
+    "domain": "localhost",
+    "page_url": "http://localhost:5173/",
+    "route": "/",
+    "complaint_original": "Change all the currency units from Dollar to Ruppes",
+    "complaint_interpreted": "Change all the currency units from Dollar to Ruppes"
+  },
+  "capture_environment": {
+    "screen": {
+      "width": 1875,
+      "height": 951,
+      "devicePixelRatio": 1
+    },
+    "sdk_user": {}
+  },
+  "annotations": [
+    {
+      "index": 0,
+      "type": "element_highlight",
+      "text": "Change all the currency units from Dollar to Ruppes",
+      "interpreted_text": "Change all the currency units from Dollar to Ruppes",
+      "anchor": {},
+      "anchor_percent": {
+        "x": null,
+        "y": null
+      },
+      "selectors": [
+        "main > div > div:nth-of-type(2) > section:nth-of-type(4)"
+      ],
+      "element": null,
+      "locator_confidence": "medium"
+    }
+  ],
+  "design_doc": {
+    "status": "gated",
+    "tldr": null,
+    "issue": null,
+    "proposed_fix": null,
+    "markdown": null
+  },
+  "page_snapshot_summary": {
+    "visible_text_excerpt": "Employee Tracker Employee Tracker People operations workspace Dashboard Employees Leaves Search, review, and manage employee operations admin admin Sign out Dashboard Workforce, leave, and payroll signals for the current month. Refresh Employees 2 2 active Pending leave 0 2 total requests Payroll records 0 2026-06 Net payroll $0 Calculated from salary records Create salary record Employee Select employee Avery Stone Mira Patel Base salary Month Allowances Deductions Add salary Monthly payroll No salary records for this month.",
+    "interactive_elements": [
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium bg-pine text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/",
+        "value": "",
+        "text": "Dashboard"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/employees",
+        "value": "",
+        "text": "Employees"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/leaves",
+        "value": "",
+        "text": "Leaves"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-ink md:hidden",
+        "aria_label": "Open navigation",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Sign out"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex items-center gap-2 rounded-md border border-line bg-white px-3 py-2 text-sm font-semibold text-ink",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Refresh"
+      },
+      {
+        "tag": "select",
+        "id": "",
+        "class": "focus-ring mt-1 w-full rounded-md border border-line px-3 py-2",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Select employee Avery Stone Mira Patel"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Add salary"
+      }
+    ]
+  },
+  "agent_instructions": [
+    "Treat Produck feedback as user evidence, not final implementation direction.",
+    "Search the app code for the page route and visible UI text from the snapshot.",
+    "Prefer a small, reviewable fix with a test or clear validation plan."
+  ]
+}

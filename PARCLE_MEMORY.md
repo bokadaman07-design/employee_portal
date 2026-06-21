@@ -95,6 +95,8 @@ Component architecture:
 
 - `App.jsx` owns routing and protected layout composition.
 - `Navbar`, `Sidebar`, and `Card` are reusable primitives.
+- `Navbar` guards sign out with an in-app confirmation modal (Confirm/Cancel) to prevent accidental logouts; the actual token/session clearing stays centralized in `AuthContext.logout`.
+- The `Dashboard` view renders all monetary values (net payroll card and the monthly payroll table) in Rupees using the `₹` symbol; salary amounts are stored/returned as plain numbers and the currency symbol is applied only at the presentation layer.
 - Views own their local form state and API orchestration.
 
 ## 3. Technical Debt
@@ -240,6 +242,7 @@ Authentication state:
 SignIn form -> AuthContext.login -> /auth/login -> token + user
 token -> localStorage -> Axios Authorization header
 page reload -> AuthContext reads localStorage -> /auth/me -> user restored
+sign out -> Navbar confirmation dialog -> on confirm: AuthContext.logout
 logout -> clear React state + localStorage + Authorization header
 ```
 
