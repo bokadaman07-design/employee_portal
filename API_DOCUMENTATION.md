@@ -72,6 +72,18 @@ Response:
 
 ## Employees
 
+An employee stores the dial code and the subscriber number as two separate,
+independently optional fields:
+
+- `country_code` (string, optional, max 10 chars): the international dial code,
+  e.g. `+1` or `+44`. It is **not** part of `phone` and is never derived from it.
+- `phone` (string, optional, max 40 chars): the local/subscriber number without
+  the dial code.
+
+Both fields default to `null` when omitted and may be cleared independently by
+sending `null`. Legacy employees created before this field existed keep
+`country_code` as `null` and unrelated edits never invent a value for them.
+
 ### POST /employees/
 
 Request:
@@ -81,7 +93,8 @@ Request:
   "first_name": "Jordan",
   "last_name": "Lee",
   "email": "jordan.lee@example.com",
-  "phone": "+1-555-0101",
+  "country_code": "+1",
+  "phone": "555-0101",
   "role": "Engineering Manager",
   "employment_status": "Active"
 }
@@ -95,7 +108,8 @@ Response: `201 Created`
   "first_name": "Jordan",
   "last_name": "Lee",
   "email": "jordan.lee@example.com",
-  "phone": "+1-555-0101",
+  "country_code": "+1",
+  "phone": "555-0101",
   "role": "Engineering Manager",
   "employment_status": "Active",
   "created_at": "2026-06-20T12:00:00",
@@ -261,3 +275,33 @@ Duplicate employee email:
 ```
 
 Validation errors use FastAPI's standard `422 Unprocessable Entity` response with field-level details.
+
+## Dashboard
+
+The dashboard view is not a single endpoint; it is composed client-side from
+four protected calls. All four require the `Authorization: Bearer <token>`
+header:
+
+- `GET /employees/` — workforce count and active headcount
+- `GET /leaves/summary` — pending/approved/rejected leave totals
+- `GET /salary/summary?month=YYYY-MM` — payroll totals for the month
+- `GET /salary/?month=YYYY-MM` — monthly salary rows
+
+The frontend loads these with `Promise.allSettled`, so a failure in one call no
+longer blanks the entire dashboard. Each section falls back to a safe default
+(zeroed summaries / empty lists) and a specific banner names which data failed
+to load.
+
+### Troubleshooting "Unable to load dashboard data"
+
+1. **Auth token** — confirm a valid token is present. Protected calls must send
+   `Authorization: Bearer <token>`; a missing/expired token returns `401` and
+   `AuthContext` will sign the user out. Re-login if needed.
+2. **`VITE_API_URL`** — the frontend reads `import.meta.env.VITE_API_URL`
+   (default `http://localhost:8000`). A wrong base URL makes every call fail.
+3. **Backend availability** — verify the API is up with `GET /health`
+   returning `{"status": "healthy"}`, then check the individual dashboard
+   endpoints above. The error banner now names the specific failing dataset to
+   narrow this down.
+4. **CORS** — ensure the frontend origin is included in the backend
+   `CORS_ORIGINS` setting, otherwise browser calls are blocked.

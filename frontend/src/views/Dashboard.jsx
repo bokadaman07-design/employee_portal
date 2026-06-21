@@ -41,22 +41,60 @@ export default function Dashboard() {
   async function loadDashboard() {
     setError("");
     setLoading(true);
-    try {
-      const [employeeRes, leaveRes, payrollRes, salaryRes] = await Promise.all([
-        api.get("/employees/"),
-        api.get("/leaves/summary"),
-        api.get("/salary/summary", { params: { month: salaryForm.month || currentMonth } }),
-        api.get("/salary/", { params: { month: salaryForm.month || currentMonth } }),
-      ]);
-      setEmployees(employeeRes.data);
-      setLeaveSummary(leaveRes.data);
-      setPayrollSummary(payrollRes.data);
-      setSalaryRecords(salaryRes.data);
-    } catch (err) {
-      setError(getErrorMessage(err, "Unable to load dashboard data"));
-    } finally {
-      setLoading(false);
+    const month = salaryForm.month || currentMonth;
+    const [employeeRes, leaveRes, payrollRes, salaryRes] = await Promise.allSettled([
+      api.get("/employees/"),
+      api.get("/leaves/summary"),
+      api.get("/salary/summary", { params: { month } }),
+      api.get("/salary/", { params: { month } }),
+    ]);
+
+    const failures = [];
+
+    if (employeeRes.status === "fulfilled") {
+      setEmployees(employeeRes.value.data);
+    } else {
+      setEmployees([]);
+      failures.push("employees");
     }
+
+    if (leaveRes.status === "fulfilled") {
+      setLeaveSummary(leaveRes.value.data);
+    } else {
+      setLeaveSummary({ pending: 0, approved: 0, rejected: 0, total: 0 });
+      failures.push("leave summary");
+    }
+
+    if (payrollRes.status === "fulfilled") {
+      setPayrollSummary(payrollRes.value.data);
+    } else {
+      setPayrollSummary({
+        month,
+        record_count: 0,
+        gross_salary: 0,
+        total_allowances: 0,
+        total_deductions: 0,
+        net_payroll: 0,
+      });
+      failures.push("payroll summary");
+    }
+
+    if (salaryRes.status === "fulfilled") {
+      setSalaryRecords(salaryRes.value.data);
+    } else {
+      setSalaryRecords([]);
+      failures.push("salary records");
+    }
+
+    if (failures.length > 0) {
+      const firstError = [employeeRes, leaveRes, payrollRes, salaryRes].find(
+        (result) => result.status === "rejected",
+      )?.reason;
+      const detail = getErrorMessage(firstError ?? {}, "Unable to load dashboard data");
+      setError(`Could not load ${failures.join(", ")}: ${detail}`);
+    }
+
+    setLoading(false);
   }
 
   useEffect(() => {
