@@ -95,7 +95,7 @@ Component architecture:
 
 - `App.jsx` owns routing and protected layout composition.
 - `Navbar`, `Sidebar`, and `Card` are reusable primitives.
-- `Navbar` guards sign out with a `window.confirm` dialog to prevent accidental logouts; the actual token/session clearing stays centralized in `AuthContext.logout`.
+- `Navbar` guards sign out with an in-app confirmation modal (Confirm/Cancel) to prevent accidental logouts; the actual token/session clearing stays centralized in `AuthContext.logout`.
 - Views own their local form state and API orchestration.
 
 ## 3. Technical Debt

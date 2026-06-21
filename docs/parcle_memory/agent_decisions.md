@@ -228,3 +228,65 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 09:06 UTC
+
+**Incident:** Produck feedback ticket 8bbdb460-18f2-4588-8d5a-c38f93b51a80: Add confirmation dialog for sign out
+
+Classification: feature
+Priority: high
+Affected route: /
+
+Problem:
+The Sign Out action executes immediately without a confirmation step, risking accidental logouts.
+
+Reproduction / evidence:
+- Click on the 'Sign Out' button
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='when clicked on sign out should ask for conformation.', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['header > div > div:nth-of-type(2) > button'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Intercept the Sign Out click event and display a confirmation dialog asking 'Are you sure you want to sign out?' with a clear Confirm and Cancel action.
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_gUHpD17UxZvqRLdY1ez59924, file:file_KVsVZ9YLXBr3nXB1jYim3, file:file_QUrRQpl1gpwI5xbZp17jMM, file:file_GwqKE1F0sudrtjZu7BMBDtI
+
+**Hypothesis:** The Sign Out button in Navbar.jsx lacks a confirmation step
+
+**Reasoning:** The incident report and existing incident/remediation documentation clearly state that the Sign Out button in Navbar.jsx lacks a confirmation step, which is the root cause of the issue. The documentation also provides implementation requirements and testing requirements to fix the issue.
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Update frontend/src/components/Navbar.jsx to call a local confirmation handler before invoking the existing logout() function
+* Keep token/session clearing centralized in frontend/src/context/AuthContext.js
+
+**Files Modified:**
+* `PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/.state/produck_ticket_state.json` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Navbar.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-f7738c7e-be03-41cc-a152-f5358a2c8a18.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-f7738c7e-be03-41cc-a152-f5358a2c8a18.md`.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

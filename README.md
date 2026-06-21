@@ -65,7 +65,7 @@ The sign-in page (`frontend/src/views/SignIn.jsx`) starts with empty username an
 
 ## Sign-out Behavior
 
-The Sign Out button in the navbar (`frontend/src/components/Navbar.jsx`) shows a confirmation dialog ("Are you sure you want to sign out?") before logging out, preventing accidental logouts. The actual token/session clearing remains centralized in `AuthContext.logout` (`frontend/src/context/AuthContext.js`).
+The Sign Out button in the navbar (`frontend/src/components/Navbar.jsx`) opens an in-app confirmation modal ("Are you sure you want to sign out?") with explicit Confirm and Cancel actions before logging out, preventing accidental logouts. Cancel (or clicking the backdrop) dismisses the dialog and leaves the session intact; Confirm calls `logout()`. The actual token/session clearing remains centralized in `AuthContext.logout` (`frontend/src/context/AuthContext.js`).
 
 ## Troubleshooting
 

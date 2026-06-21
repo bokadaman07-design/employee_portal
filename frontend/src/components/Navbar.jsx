@@ -1,14 +1,15 @@
+import { useState } from "react";
 import { LogOut, Menu, Search } from "lucide-react";
 
 import { useAuth } from "../context/AuthContext";
 
 export default function Navbar({ onMenuClick }) {
   const { logout, user } = useAuth();
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
-  function handleSignOut() {
-    if (window.confirm("Are you sure you want to sign out?")) {
-      logout();
-    }
+  function handleConfirmSignOut() {
+    setConfirmOpen(false);
+    logout();
   }
 
   return (
@@ -33,7 +34,7 @@ export default function Navbar({ onMenuClick }) {
           </div>
           <button
             type="button"
-            onClick={handleSignOut}
+            onClick={() => setConfirmOpen(true)}
             className="focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white"
           >
             <LogOut size={16} />
@@ -41,6 +42,45 @@ export default function Navbar({ onMenuClick }) {
           </button>
         </div>
       </div>
+
+      {confirmOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="signout-dialog-title"
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-ink/35"
+            onClick={() => setConfirmOpen(false)}
+            aria-label="Cancel sign out"
+          />
+          <div className="relative w-full max-w-sm rounded-lg border border-line bg-white p-6 shadow-lg">
+            <h2 id="signout-dialog-title" className="text-base font-semibold text-ink">
+              Sign out
+            </h2>
+            <p className="mt-2 text-sm text-ink/65">Are you sure you want to sign out?</p>
+            <div className="mt-6 flex justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setConfirmOpen(false)}
+                className="focus-ring inline-flex h-10 items-center rounded-md border border-line bg-white px-4 text-sm font-semibold text-ink"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmSignOut}
+                className="focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-4 text-sm font-semibold text-white"
+              >
+                <LogOut size={16} />
+                Sign out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
