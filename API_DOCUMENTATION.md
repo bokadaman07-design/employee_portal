@@ -197,6 +197,8 @@ Marks a leave request as rejected.
 
 ## Salary
 
+Salary amounts (`base_salary`, `allowances`, `deductions`, `net_salary`, and the summary totals) are stored and returned as plain numeric values without a currency unit. The frontend Dashboard renders these amounts in Rupees (`₹`); the currency symbol is applied only at the presentation layer.
+
 ### POST /salary/
 
 Request:

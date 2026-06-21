@@ -154,7 +154,7 @@ export default function Dashboard() {
         <Card title="Employees" value={loading ? "..." : employees.length} description={`${activeEmployees} active`} accent="pine" />
         <Card title="Pending leave" value={loading ? "..." : leaveSummary.pending} description={`${leaveSummary.total} total requests`} accent="gold" />
         <Card title="Payroll records" value={loading ? "..." : payrollSummary.record_count} description={payrollSummary.month} accent="coral" />
-        <Card title="Net payroll" value={loading ? "..." : `$${payrollSummary.net_payroll.toLocaleString()}`} description="Calculated from salary records" accent="ink" />
+        <Card title="Net payroll" value={loading ? "..." : `₹${payrollSummary.net_payroll.toLocaleString()}`} description="Calculated from salary records" accent="ink" />
       </div>
 
       <section className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
@@ -220,10 +220,10 @@ export default function Dashboard() {
                   {salaryRecords.map((record) => (
                     <tr key={record.id}>
                       <td className="py-3">{record.employee_id}</td>
-                      <td className="py-3">${record.base_salary.toLocaleString()}</td>
-                      <td className="py-3">${record.allowances.toLocaleString()}</td>
-                      <td className="py-3">${record.deductions.toLocaleString()}</td>
-                      <td className="py-3 font-semibold">${record.net_salary.toLocaleString()}</td>
+                      <td className="py-3">₹{record.base_salary.toLocaleString()}</td>
+                      <td className="py-3">₹{record.allowances.toLocaleString()}</td>
+                      <td className="py-3">₹{record.deductions.toLocaleString()}</td>
+                      <td className="py-3 font-semibold">₹{record.net_salary.toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>
