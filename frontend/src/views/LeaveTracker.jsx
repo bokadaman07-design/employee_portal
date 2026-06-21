@@ -13,7 +13,17 @@ const emptyLeaveForm = {
 };
 
 function getErrorMessage(error, fallback) {
-  return error.response?.data?.detail || fallback;
+  const detail = error.response?.data?.detail;
+  if (Array.isArray(detail)) {
+    const messages = detail
+      .map((item) => (typeof item === "string" ? item : item?.msg))
+      .filter(Boolean);
+    return messages.length ? messages.join(", ") : fallback;
+  }
+  if (typeof detail === "string") {
+    return detail;
+  }
+  return fallback;
 }
 
 export default function LeaveTracker() {
@@ -55,8 +65,12 @@ export default function LeaveTracker() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setSaving(true);
     setError("");
+    if (form.start_date && form.end_date && form.end_date < form.start_date) {
+      setError("End date cannot be before the start date.");
+      return;
+    }
+    setSaving(true);
     try {
       await api.post("/leaves/", {
         ...form,
