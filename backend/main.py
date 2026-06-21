@@ -4,7 +4,7 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import func, select
+from sqlalchemy import inspect, func, select, text
 from sqlalchemy.orm import Session
 
 from auth import CurrentUser, get_password_hash, router as auth_router
@@ -14,6 +14,23 @@ from routers import employees, leaves, salary
 
 
 APP_VERSION = "1.0.0"
+
+
+def apply_sqlite_schema_repairs() -> None:
+    """Apply tiny idempotent repairs for SQLite databases created before migrations."""
+    if engine.dialect.name != "sqlite":
+        return
+
+    inspector = inspect(engine)
+    if "employees" not in inspector.get_table_names():
+        return
+
+    employee_columns = {column["name"] for column in inspector.get_columns("employees")}
+    if "country_code" in employee_columns:
+        return
+
+    with engine.begin() as connection:
+        connection.execute(text("ALTER TABLE employees ADD COLUMN country_code VARCHAR(10)"))
 
 
 def seed_default_admin(db: Session) -> None:
@@ -60,6 +77,7 @@ def seed_sample_employees(db: Session) -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
+    apply_sqlite_schema_repairs()
     with SessionLocal() as db:
         seed_default_admin(db)
         seed_sample_employees(db)
