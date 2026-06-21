@@ -152,6 +152,8 @@ Request:
 }
 ```
 
+> The Leave Tracker UI (`frontend/src/views/LeaveTracker.jsx`) now requires a non-empty `reason`. The field is marked `required`, client-side validation blocks submission when the reason is blank, and the trimmed `reason` value is sent in the payload.
+
 ### GET /leaves/
 
 Optional query parameters:
