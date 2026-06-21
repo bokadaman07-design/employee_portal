@@ -725,3 +725,80 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 13:35 UTC
+
+**Incident:** Produck feedback ticket 86310933-d809-4eb9-bd24-0fccaff1fa59: Colors for employees leave etc are not visible in dark mode
+
+Classification: ux
+Priority: medium
+Affected route: /
+
+Problem:
+Colors for employees leave etc are not visible in dark mode
+
+Reproduction / evidence:
+- Switch to dark mode
+- Navigate to the employees or leaves page
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='when in darkmode those colors for employees leave etc are not visible so change that.', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['#root > div > div > main'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Adjust the colors for employees leave etc to be visible in dark mode
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_0acJLVq5aj8FXELu9uxoresV, file:file_qrS88e86OlgsGtrA67hcb2Eu, file:file_KFXjVgOpiyWzw7n3muANMzrx
+
+**Hypothesis:** Insufficient dark mode styling for employee and leave colors
+
+**Reasoning:** The incident report and documentation suggest that the colors for employees and leave are not visible in dark mode, and the suggested fix is to adjust these colors to be visible in dark mode. The relevant files listed, such as `Dashboard.jsx`, `LeaveTracker.jsx`, and `tailwind.config.js`, also support this hypothesis.
+
+**Confidence:** 80%
+
+**Remediation Strategy:**
+* Audit colored leave/employee status chips, metric cards, and any pastel/background-only indicators in `Dashboard.jsx` and `LeaveTracker.jsx`
+* Add explicit `dark:` background, text, border, and/or ring classes so the colors remain visible in dark mode
+* Update or extend `frontend/tests/theme.dark-mode.test.mjs` to cover the specific employee/leave color contrast regression
+
+**Files Modified:**
+* `PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-cd403e37-7b7d-47b6-a830-04f0a7f8618e.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/86310933-d809-4eb9-bd24-0fccaff1fa59/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/App.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Card.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Sidebar.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/hooks/useTheme.js` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/index.css` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/main.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/EmployeeList.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/LeaveTracker.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/SignIn.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tailwind.config.js` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/theme.dark-mode.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-41a3ec5c-f1cb-4b67-87e6-154fff46cd3e.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-41a3ec5c-f1cb-4b67-87e6-154fff46cd3e.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-41a3ec5c-f1cb-4b67-87e6-154fff46cd3e.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

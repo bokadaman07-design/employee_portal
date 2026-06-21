@@ -12,6 +12,17 @@ const emptyLeaveForm = {
   reason: "",
 };
 
+// Semantic colors for a leave status chip. Each entry pairs a light-mode tint
+// with an explicit dark-mode variant so the status stays color-coded and
+// legible in dark mode (the previous neutral chip lost all meaning there).
+const leaveStatusChip = {
+  Pending: "bg-amber-100 text-amber-800 dark:bg-amber-400/20 dark:text-amber-200",
+  Approved: "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/20 dark:text-emerald-200",
+  Rejected: "bg-rose-100 text-rose-700 dark:bg-rose-400/20 dark:text-rose-200",
+};
+
+const defaultChip = "bg-mist text-ink/70 dark:bg-edge dark:text-fog/70";
+
 function getErrorMessage(error, fallback) {
   const detail = error.response?.data?.detail;
   if (Array.isArray(detail)) {
@@ -195,7 +206,7 @@ export default function LeaveTracker() {
                       <p className="mt-1 text-sm text-ink/60 dark:text-fog/60">{leave.leave_type} leave from {leave.start_date} to {leave.end_date}</p>
                       {leave.reason && <p className="mt-2 text-sm text-ink/70 dark:text-fog/70">{leave.reason}</p>}
                     </div>
-                    <span className="w-fit rounded-md bg-mist px-2 py-1 text-xs font-semibold text-ink/70 dark:bg-edge dark:text-fog/70">{leave.status}</span>
+                    <span className={`w-fit rounded-md px-2 py-1 text-xs font-semibold ${leaveStatusChip[leave.status] || defaultChip}`}>{leave.status}</span>
                   </div>
                   {leave.status === "Pending" && (
                     <div className="mt-4 flex gap-2">

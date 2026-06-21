@@ -18,6 +18,18 @@ function getErrorMessage(error, fallback) {
   return error.response?.data?.detail || fallback;
 }
 
+// Semantic colors for an employment-status chip. Each entry pairs a light-mode
+// tint with an explicit dark-mode variant so the status stays color-coded and
+// legible in dark mode instead of collapsing to a single neutral grey.
+const employmentStatusChip = {
+  Active: "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/20 dark:text-emerald-200",
+  Inactive: "bg-mist text-ink/70 dark:bg-edge dark:text-fog/70",
+  "On Leave": "bg-amber-100 text-amber-800 dark:bg-amber-400/20 dark:text-amber-200",
+  Terminated: "bg-rose-100 text-rose-700 dark:bg-rose-400/20 dark:text-rose-200",
+};
+
+const defaultEmploymentChip = "bg-mist text-ink/70 dark:bg-edge dark:text-fog/70";
+
 export default function EmployeeList() {
   const [employees, setEmployees] = useState([]);
   const [form, setForm] = useState(emptyForm);
@@ -215,7 +227,7 @@ export default function EmployeeList() {
                       <td className="py-3 text-ink/70 dark:text-fog/70">{employee.role}</td>
                       <td className="py-3 text-ink/70 dark:text-fog/70">{employee.gender || "—"}</td>
                       <td className="py-3">
-                        <span className="rounded-md bg-mist px-2 py-1 text-xs font-semibold text-ink/70 dark:bg-edge dark:text-fog/70">{employee.employment_status}</span>
+                        <span className={`rounded-md px-2 py-1 text-xs font-semibold ${employmentStatusChip[employee.employment_status] || defaultEmploymentChip}`}>{employee.employment_status}</span>
                       </td>
                       <td className="py-3">
                         <div className="flex justify-end gap-2">

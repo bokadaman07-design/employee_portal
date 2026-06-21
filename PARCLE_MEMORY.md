@@ -99,6 +99,12 @@ Component architecture:
 - The `Dashboard` view renders all monetary values (net payroll card and the monthly payroll table) in Rupees using the `₹` symbol; salary amounts are stored/returned as plain numbers and the currency symbol is applied only at the presentation layer.
 - Views own their local form state and API orchestration.
 
+Dark mode and status colors:
+
+- Tailwind runs in class-based dark mode (`darkMode: "class"`); the `dark` class is toggled on `<html>` by `useTheme`. The dark surface palette is `night`/`panel`/`edge`/`fog` (page/raised/border/text).
+- Status indicators must carry explicit `dark:` variants. Two regressions were fixed here: the `Card` `ink` accent (`#17211f`) was invisible against the `panel` surface (`#18211f`) and now lifts to `dark:border-l-fog`; the leave and employment status chips were a single neutral grey and are now color-coded (emerald = Active/Approved, amber = Pending/On Leave, rose = Rejected/Terminated) with paired light and `dark:` classes. Status-color maps live next to each view (`LeaveTracker.jsx`, `EmployeeList.jsx`).
+- When adding any color-only indicator (chip, accent border, pastel background), always include a `dark:` variant; `frontend/tests/theme.dark-mode.test.mjs` guards this.
+
 ## 3. Technical Debt
 
 Description: No Alembic migrations yet.
