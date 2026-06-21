@@ -757,3 +757,71 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 13:42 UTC
+
+**Incident:** Produck feedback ticket 86310933-d809-4eb9-bd24-0fccaff1fa59: Colors for employee leave categories are not visible in dark mode
+
+Classification: ux
+Priority: medium
+Affected route: /
+
+Problem:
+The color indicators for employee leave categories become invisible when dark mode is enabled
+
+Reproduction / evidence:
+- Enable dark mode on the page where employee leave categories are displayed
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='when in darkmode those colors for employees leave etc are not visible so change that.', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['#root > div > div > main'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Manually inspect the employee leave view in dark mode to identify the affected elements and apply appropriate dark-mode overrides
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_qrS88e86OlgsGtrA67hcb2Eu, file:file_QUrRQpl1gpwI5xbZp17jMM, file:file_KVsVZ9YLXBr3nXB1jYim3, file:file_Q06K97JEImwK6ms01Bh9AWs
+
+**Hypothesis:** Inadequate dark-mode styling for leave category color indicators
+
+**Reasoning:** The issue is specific to dark mode and the color indicators for employee leave categories. The provided documentation and reproduction steps suggest that the issue is related to the styling of these indicators in dark mode. The recommended implementation focus on inspecting LeaveTracker.jsx and ensuring dark-mode-safe foreground/background/border classes supports this hypothesis.
+
+**Confidence:** 80%
+
+**Remediation Strategy:**
+* Inspect frontend/src/views/LeaveTracker.jsx for leave category/status color indicators
+* Verify dark-mode-safe foreground/background/border classes
+* Test in both themes at http://localhost:5173/
+
+**Files Modified:**
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-leave-indicator-dark-mode.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/86310933-d809-4eb9-bd24-0fccaff1fa59/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/package.json` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Card.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/utils/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/LeaveTracker.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-84baecae-d3aa-4b52-bdfd-9ed8485e2013.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-84baecae-d3aa-4b52-bdfd-9ed8485e2013.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-84baecae-d3aa-4b52-bdfd-9ed8485e2013.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

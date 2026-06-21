@@ -3,6 +3,7 @@ import { Check, Plus, X } from "lucide-react";
 
 import Card from "../components/Card";
 import { api } from "../context/AuthContext";
+import { leaveStatusBadgeClass } from "../utils/leaveStatus";
 
 const emptyLeaveForm = {
   employee_id: "",
@@ -195,7 +196,7 @@ export default function LeaveTracker() {
                       <p className="mt-1 text-sm text-ink/60">{leave.leave_type} leave from {leave.start_date} to {leave.end_date}</p>
                       {leave.reason && <p className="mt-2 text-sm text-ink/70">{leave.reason}</p>}
                     </div>
-                    <span className="w-fit rounded-md bg-mist px-2 py-1 text-xs font-semibold text-ink/70">{leave.status}</span>
+                    <span className={`w-fit rounded-md px-2 py-1 text-xs font-semibold ${leaveStatusBadgeClass(leave.status)}`}>{leave.status}</span>
                   </div>
                   {leave.status === "Pending" && (
                     <div className="mt-4 flex gap-2">

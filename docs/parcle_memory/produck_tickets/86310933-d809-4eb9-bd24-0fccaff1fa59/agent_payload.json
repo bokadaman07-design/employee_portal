@@ -1,0 +1,148 @@
+{
+  "schema_version": "produck-agent-payload-v1",
+  "task_type": "ui_feedback_bugfix",
+  "confidence": "medium",
+  "blocking_uncertainties": [],
+  "feedback": {
+    "id": "86310933-d809-4eb9-bd24-0fccaff1fa59",
+    "created_at": "2026-06-21T13:29:40.836Z",
+    "domain": "localhost",
+    "page_url": "http://localhost:5173/",
+    "route": "/",
+    "complaint_original": "when in darkmode those colors for employees leave etc are not visible so change that.",
+    "complaint_interpreted": "when in darkmode those colors for employees leave etc are not visible so change that."
+  },
+  "capture_environment": {
+    "screen": {
+      "width": 1875,
+      "height": 951,
+      "devicePixelRatio": 1
+    },
+    "sdk_user": {}
+  },
+  "annotations": [
+    {
+      "index": 0,
+      "type": "element_highlight",
+      "text": "when in darkmode those colors for employees leave etc are not visible so change that.",
+      "interpreted_text": "when in darkmode those colors for employees leave etc are not visible so change that.",
+      "anchor": {},
+      "anchor_percent": {
+        "x": null,
+        "y": null
+      },
+      "selectors": [
+        "#root > div > div > main"
+      ],
+      "element": null,
+      "locator_confidence": "medium"
+    }
+  ],
+  "design_doc": {
+    "status": "completed",
+    "tldr": "In dark mode, the color indicators for employee leave categories are not visible and need dark-mode-compatible values.",
+    "issue": "A user highlighted that when dark mode is enabled, the color indicators used to distinguish employee leave categories become invisible. The specific element's selector, class name, and component type were not recorded \u2014 no DOM snapshot, console errors, or network signals were captured in this session, so the exact component (calendar, legend, badge, or other) must be confirmed by manual inspection. One possible cause \u2014 unconfirmed by any captured signal \u2014 is that leave category colors have no dark-mode variant and become indistinguishable against dark backgrounds. **Reproduction:** On the page where employee leave categories are displayed (exact route unconfirmed \u2014 the session was captured at '/' but whether the leave view is a separate route or an in-page panel needs verification), enable dark mode and observe the color indicators.",
+    "proposed_fix": "Manually inspect the employee leave view in dark mode to identify the affected elements and confirm their selectors \u2014 no selectors or DOM snapshots were captured in this session, so the scope of impact must be established first. Once the affected elements are confirmed, identify the project's theming mechanism (not observable from this capture) and apply appropriate dark-mode overrides. Once the element type and current color definition are confirmed by inspection, apply a contrast-safe override for dark backgrounds. Verify all leave category color indicators remain distinguishable after the change.",
+    "markdown": "## TL;DR\n\nIn dark mode, the color indicators for employee leave categories are not visible and need dark-mode-compatible values.\n\n## Issue\n\nA user highlighted that when dark mode is enabled, the color indicators used to distinguish employee leave categories become invisible. The specific element's selector, class name, and component type were not recorded \u2014 no DOM snapshot, console errors, or network signals were captured in this session, so the exact component (calendar, legend, badge, or other) must be confirmed by manual inspection. One possible cause \u2014 unconfirmed by any captured signal \u2014 is that leave category colors have no dark-mode variant and become indistinguishable against dark backgrounds. **Reproduction:** On the page where employee leave categories are displayed (exact route unconfirmed \u2014 the session was captured at '/' but whether the leave view is a separate route or an in-page panel needs verification), enable dark mode and observe the color indicators.\n\n## Proposed Fix\n\nManually inspect the employee leave view in dark mode to identify the affected elements and confirm their selectors \u2014 no selectors or DOM snapshots were captured in this session, so the scope of impact must be established first. Once the affected elements are confirmed, identify the project's theming mechanism (not observable from this capture) and apply appropriate dark-mode overrides. Once the element type and current color definition are confirmed by inspection, apply a contrast-safe override for dark backgrounds. Verify all leave category color indicators remain distinguishable after the change."
+  },
+  "page_snapshot_summary": {
+    "visible_text_excerpt": "Employee Tracker Employee Tracker People operations workspace Dashboard Employees Leaves Search, review, and manage employee operations admin admin Sign out Dashboard Workforce, leave, and payroll signals for the current month. Refresh Employees 2 2 active Pending leave 0 2 total requests Payroll records 4 2026-06 Net payroll \u20b920,288 Calculated from salary records Create salary record Employee Select employee Avery Stone Mira Patel Base salary Month Allowances Deductions Base + allowances \u2212 deductions \u20b90 + \u20b90 \u2212 \u20b90 Net salary preview \u20b90 Add salary Monthly payroll Employee ID Base Allowances Deductions Net 1 \u20b91,000 \u20b91,993 \u20b93,339 \u20b9-346 2 \u20b910,383 \u20b9131 \u20b90 \u20b910,514 1 \u20b9100 \u20b920 \u20b90 \u20b9120 1 \u20b910,000 \u20b90 \u20b90 \u20b910,000",
+    "interactive_elements": [
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium bg-pine text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/",
+        "value": "",
+        "text": "Dashboard"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink dark:text-fog/70 dark:hover:bg-edge dark:hover:text-fog",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/employees",
+        "value": "",
+        "text": "Employees"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink dark:text-fog/70 dark:hover:bg-edge dark:hover:text-fog",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/leaves",
+        "value": "",
+        "text": "Leaves"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-ink md:hidden dark:border-edge dark:bg-panel dark:text-fog",
+        "aria_label": "Open navigation",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-ink dark:border-edge dark:bg-panel dark:text-fog",
+        "aria_label": "Switch to light mode",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white dark:bg-pine",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Sign out"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex items-center gap-2 rounded-md border border-line bg-white px-3 py-2 text-sm font-semibold text-ink dark:border-edge dark:bg-panel dark:text-fog",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Refresh"
+      },
+      {
+        "tag": "select",
+        "id": "",
+        "class": "focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Select employee Avery Stone Mira Patel"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Add salary"
+      }
+    ]
+  },
+  "agent_instructions": [
+    "Treat Produck feedback as user evidence, not final implementation direction.",
+    "Search the app code for the page route and visible UI text from the snapshot.",
+    "Prefer a small, reviewable fix with a test or clear validation plan."
+  ]
+}

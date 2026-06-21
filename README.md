@@ -77,6 +77,22 @@ The "Create salary record" form on the Dashboard (`frontend/src/views/Dashboard.
 
 The form also shows a **Projected payroll total** for the selected month: the net payroll already recorded for that month (`net_payroll` from `GET /salary/summary`) plus the net of the record about to be added. This lets the user verify the cumulative total amount they are building up before submitting. It updates live alongside the net salary preview and is rendered in Rupees (`₹`).
 
+## Leave Status Indicators (Dark Mode)
+
+Leave requests on the Leave Tracker (`frontend/src/views/LeaveTracker.jsx`) show a status badge whose color encodes the status. The badge classes come from a small helper, `frontend/src/utils/leaveStatus.js` (`leaveStatusBadgeClass`), which maps `Pending` → gold, `Approved` → pine/green, `Rejected` → coral, and any unknown status → a neutral fallback. Each badge uses a solid fill with white text so it stays legible on any surface, including when the browser/OS is in dark mode.
+
+The app uses TailwindCSS with its default `darkMode: "media"` strategy, meaning `dark:` variants activate automatically under `prefers-color-scheme: dark`. The badge classes and the "Total" summary card accent (`frontend/src/components/Card.jsx`, `border-l-ink dark:border-l-mist`) carry dark-mode-safe overrides so the indicators do not disappear against dark backgrounds. See `docs/parcle_memory/incidents/20260621-leave-indicator-dark-mode.md`.
+
+## Frontend Tests
+
+The frontend has a lightweight regression suite using Node's built-in test runner (no extra dependencies). Run it from `frontend/`:
+
+```bash
+npm test
+```
+
+Current coverage lives in `frontend/src/utils/*.test.js` (e.g. leave status badge color/dark-mode mapping).
+
 ## Troubleshooting
 
 - If login fails after a backend restart, clear browser local storage and sign in again. This can happen when `SECRET_KEY` is not persisted.
@@ -90,5 +106,5 @@ The form also shows a **Projected payroll total** for the selected month: the ne
 - Move from SQLite to PostgreSQL for multi-user production workloads.
 - Add Alembic migrations.
 - Add audit logging for employee, leave, and salary changes.
-- Add automated tests and CI checks.
+- Expand the frontend test suite and wire up CI checks.
 - Add departments, attendance, notifications, and reporting exports.

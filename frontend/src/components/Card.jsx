@@ -1,9 +1,12 @@
 export default function Card({ title, value, description, accent = "pine", children }) {
+  // `border-l-ink` is near-black and disappears against dark backgrounds, so the
+  // ink accent gets a light-on-dark override. The app uses Tailwind's default
+  // `darkMode: "media"` strategy, so `dark:` variants apply under OS dark mode.
   const accentClass = {
     pine: "border-l-pine",
     coral: "border-l-coral",
     gold: "border-l-gold",
-    ink: "border-l-ink",
+    ink: "border-l-ink dark:border-l-mist",
   }[accent];
 
   return (
