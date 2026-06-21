@@ -118,3 +118,45 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 07:05 UTC
+
+**Incident:** The employee does not have gender information at all can you add the gender field.
+
+**Documentation Referenced:**
+* file:file_KFXjVgOpiyWzw7n3muANMzrx
+
+**Hypothesis:** The employee API documentation and schema do not include a gender field
+
+**Reasoning:** The provided documentation and the example given show that the current employee API documentation and schema lack a gender field. The proposed solution involves adding a gender field to the employee model/schema and updating the create, update, and response payloads. This suggests that the root cause of the incident is the missing gender field in the API documentation and schema.
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Add a gender field to the employee model/schema
+* Update the create, update, and response payloads to include the gender field
+* Update the database column to include the gender field
+* Update the employee ORM/model to include the gender field
+* Update the API documentation to reflect the changes
+
+**Files Modified:**
+* `API_DOCUMENTATION.md` - changed by Enter Pro to implement or verify the remediation.
+* `backend/main.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/models.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/schemas.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_employee_gender.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_startup_schema_repairs.py` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-7ce6d571-0315-454c-97fd-14d0df2ba4d9.md` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/EmployeeList.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

@@ -29,6 +29,7 @@ class EmployeeBase(BaseModel):
     email: EmailStr
     phone: str | None = Field(default=None, max_length=40)
     country_code: str | None = Field(default=None, max_length=10)
+    gender: str | None = Field(default=None, max_length=30)
     role: str = Field(..., min_length=1, max_length=120)
     employment_status: EmploymentStatus = "Active"
 
@@ -43,6 +44,7 @@ class EmployeeUpdate(BaseModel):
     email: EmailStr | None = None
     phone: str | None = Field(default=None, max_length=40)
     country_code: str | None = Field(default=None, max_length=10)
+    gender: str | None = Field(default=None, max_length=30)
     role: str | None = Field(default=None, min_length=1, max_length=120)
     employment_status: EmploymentStatus | None = None
 
