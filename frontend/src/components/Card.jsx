@@ -3,7 +3,10 @@ export default function Card({ title, value, description, accent = "pine", child
     pine: "border-l-pine",
     coral: "border-l-coral",
     gold: "border-l-gold",
-    ink: "border-l-ink",
+    // The ink accent (#17211f) is indistinguishable from the dark panel
+    // (#18211f), so the colored edge disappears in dark mode. Lift it to the
+    // light "fog" tone on dark surfaces so the accent stays visible.
+    ink: "border-l-ink dark:border-l-fog",
   }[accent];
 
   return (

@@ -125,6 +125,44 @@ test("Core views and components carry dark: variants", () => {
   }
 });
 
+// --- Employee/leave status colors stay visible in dark mode ---
+//
+// Regression: status colors for employees and leave were invisible in dark
+// mode. The metric card "ink" accent matched the dark panel surface, and the
+// status chips were a single neutral grey that carried no meaning. These tests
+// lock in that the colored indicators have explicit dark-mode variants.
+
+test("Card 'ink' accent stays visible in dark mode", () => {
+  const cardSrc = read("../src/components/Card.jsx");
+  assert.match(
+    cardSrc,
+    /ink:\s*["']border-l-ink[^"']*dark:border-l-/,
+    "Card.jsx ink accent should override the border color in dark mode so it is not lost against the dark panel",
+  );
+});
+
+test("Leave status chips are color-coded with dark variants", () => {
+  const src = read("../src/views/LeaveTracker.jsx");
+  for (const status of ["Pending", "Approved", "Rejected"]) {
+    assert.match(
+      src,
+      new RegExp(`${status}:[^\\n]*dark:bg-[^\\n]*dark:text-`),
+      `LeaveTracker.jsx should give the ${status} chip explicit dark: background and text classes`,
+    );
+  }
+});
+
+test("Employment status chips are color-coded with dark variants", () => {
+  const src = read("../src/views/EmployeeList.jsx");
+  for (const status of ["Active", "On Leave", "Terminated"]) {
+    assert.match(
+      src,
+      new RegExp(`["']?${status}["']?:[^\\n]*dark:bg-[^\\n]*dark:text-`),
+      `EmployeeList.jsx should give the ${status} chip explicit dark: background and text classes`,
+    );
+  }
+});
+
 let failed = 0;
 for (const [name, fn] of tests) {
   try {
