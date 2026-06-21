@@ -138,6 +138,12 @@ Request:
 }
 ```
 
+`start_date` and `end_date` must form a valid range; `end_date` cannot be
+before `start_date`. Invalid ranges return a `422 Unprocessable Entity`
+response whose `detail` is an array of field-level error objects. The leave
+tracker UI validates the date order client-side before submitting and renders
+any backend error messages instead of crashing the view.
+
 ### GET /leaves/
 
 Optional query parameters:
