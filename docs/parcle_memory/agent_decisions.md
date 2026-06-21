@@ -290,3 +290,64 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 09:11 UTC
+
+**Incident:** Produck feedback ticket 8bbdb460-18f2-4588-8d5a-c38f93b51a80: Sign out button should ask for confirmation before logging out
+
+Classification: ux
+Priority: high
+Affected route: /
+
+Problem:
+The Sign Out action executes immediately without a confirmation step, risking accidental logouts
+
+Reproduction / evidence:
+- Click on the Sign out button
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='when clicked on sign out should ask for conformation.', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['header > div > div:nth-of-type(2) > button'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Intercept the Sign Out click event and display a confirmation dialog asking 'Are you sure you want to sign out?' with a clear Confirm and Cancel action
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_JFIW7A5y6LmVpz8j12VF7z8, file:file_gUHpD17UxZvqRLdY1ez59924, file:file_0acJLVq5aj8FXELu9uxoresV
+
+**Hypothesis:** The Sign Out button in Navbar.jsx lacks a confirmation step before logging out
+
+**Reasoning:** The incident report and documentation suggest that the Sign Out button executes immediately without a confirmation step, and the existing implementation documentation provides a clear guidance on how to add a confirmation guard in the UI layer
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Intercept the Sign Out click event in Navbar.jsx
+* Display a confirmation dialog asking 'Are you sure you want to sign out?'
+* Only call logout() after the user confirms
+
+**Files Modified:**
+* `docs/parcle_memory/.state/produck_ticket_state.json` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/navbar.signout.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-817a3409-8a75-4480-94ff-2fc3554a444d.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-817a3409-8a75-4480-94ff-2fc3554a444d.md`.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---
