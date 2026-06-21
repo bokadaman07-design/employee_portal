@@ -34,6 +34,8 @@ export default function Navbar({ onMenuClick }) {
           </div>
           <button
             type="button"
+            onClick={logout}
+            className="focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-coral px-3 text-sm font-semibold text-white"
             onClick={() => setConfirmOpen(true)}
             className="focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white"
           >

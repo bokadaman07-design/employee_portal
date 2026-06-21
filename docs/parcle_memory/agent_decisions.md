@@ -161,6 +161,20 @@ Using model auto (provider: anthropic)
 
 ---
 
+## 2026-06-21 09:57 UTC
+
+**Incident:** Produck feedback ticket 8d299ee7-6023-4993-8261-2ba7e443a0ac: Change sign out button color
+
+Classification: ux
+Priority: medium
+Affected route: /
+
+Problem:
+The sign out button color needs to be changed.
+
+Reproduction / evidence:
+- Go to http://localhost:5173/
+- Click on the sign out button
 ## 2026-06-21 09:01 UTC
 
 **Incident:** Produck feedback ticket 8bbdb460-18f2-4588-8d5a-c38f93b51a80: Sign out button should ask for confirmation before logging out
@@ -179,6 +193,11 @@ Location evidence for pinpointing the UI:
 Page URL: http://localhost:5173/
 Route: /
 Screen: 1875x951 DPR 1
+Annotation 0: text='Change sign out button color', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['header > div > div:nth-of-type(2) > button'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Update the CSS to change the sign out button color
 Annotation 0: text='when clicked on sign out should ask for conformation.', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['header > div > div:nth-of-type(2) > button'], element=None, locator_confidence=medium
 
 
@@ -189,6 +208,11 @@ Use this as a repo-level code-change request only if the Produck evidence is act
 too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
 
 **Documentation Referenced:**
+* file:file_QUrRQpl1gpwI5xbZp17jMM, file:file_0acJLVq5aj8FXELu9uxoresV, file:file_ETaxXGhIAZGdNofFQOvIe36u
+
+**Hypothesis:** The sign out button color needs to be updated in the frontend/src/components/Navbar.jsx file
+
+**Reasoning:** The incident report and documentation suggest that the issue is with the styling of the sign out button, and the smallest change can be made in the Navbar.jsx file by adjusting the Tailwind classes or style applied to the Sign Out button
 * file:file_0acJLVq5aj8FXELu9uxoresV, file:file_QUrRQpl1gpwI5xbZp17jMM, file:file_GwqKE1F0sudrtjZu7BMBDtI
 
 **Hypothesis:** The Sign Out button in the Navbar component does not have a confirmation step before logging out
@@ -198,6 +222,7 @@ too uncertain, write an investigation note in the Parcle memory incident record 
 **Confidence:** 90%
 
 **Remediation Strategy:**
+* Update the CSS to change the sign out button color in frontend/src/components/Navbar.jsx
 * Update the sign-out UI in frontend/src/components/Navbar.jsx to ask for confirmation before calling logout
 * Leave the actual token/session clearing logic centralized in frontend/src/context/AuthContext.js
 
@@ -207,6 +232,16 @@ too uncertain, write an investigation note in the Parcle memory incident record 
 * `backend/main.py` - changed by Enter Pro to implement or verify the remediation.
 * `backend/tests/test_employee_gender.py` - changed by Enter Pro to implement or verify the remediation.
 * `backend/tests/test_startup_schema_repairs.py` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-acf36eb1-ac48-4858-a6ae-d8a8cee8e828.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-signout-button-color.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Navbar.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-2212d426-24dc-43ef-ae5d-54dd873c3f75.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-2212d426-24dc-43ef-ae5d-54dd873c3f75.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-2212d426-24dc-43ef-ae5d-54dd873c3f75.md`.
 * `docs/parcle_memory/.state/` - changed by Enter Pro to implement or verify the remediation.
 * `docs/parcle_memory/incidents/2026-06-21-acf36eb1-ac48-4858-a6ae-d8a8cee8e828.md` - changed by Enter Pro to implement or verify the remediation.
 * `docs/parcle_memory/produck_tickets/` - changed by Enter Pro to implement or verify the remediation.
