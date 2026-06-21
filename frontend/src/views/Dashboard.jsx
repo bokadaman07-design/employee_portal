@@ -55,6 +55,15 @@ export default function Dashboard() {
     return { base, allowances, deductions, net };
   }, [salaryForm.base_salary, salaryForm.allowances, salaryForm.deductions]);
 
+  // Projected cumulative payroll total: the net payroll already recorded for the
+  // selected month plus the net salary of the record about to be added. This is
+  // the "total amount" the user wants to verify before submitting, so they can
+  // see how this entry rolls up into the month's payroll before proceeding.
+  const projectedPayrollTotal = useMemo(() => {
+    const current = Number(payrollSummary.net_payroll) || 0;
+    return Math.round((current + salaryPreview.net) * 100) / 100;
+  }, [payrollSummary.net_payroll, salaryPreview.net]);
+
   async function loadDashboard() {
     setError("");
     setLoading(true);
@@ -226,6 +235,16 @@ export default function Dashboard() {
               <span className="text-sm font-medium text-ink/70">Net salary preview</span>
               <span className="text-lg font-semibold text-ink">₹{salaryPreview.net.toLocaleString()}</span>
             </div>
+            <div className="mt-2 flex items-center justify-between border-t border-line pt-2">
+              <span className="text-sm font-medium text-ink/70">
+                Projected payroll total ({payrollSummary.month})
+              </span>
+              <span className="text-lg font-semibold text-pine">₹{projectedPayrollTotal.toLocaleString()}</span>
+            </div>
+            <p className="mt-1 text-xs text-ink/50">
+              Current ₹{(Number(payrollSummary.net_payroll) || 0).toLocaleString()} + this entry ₹
+              {salaryPreview.net.toLocaleString()}
+            </p>
           </div>
           <button disabled={saving} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">
             <Plus size={16} />
