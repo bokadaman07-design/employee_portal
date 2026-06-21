@@ -28,7 +28,7 @@ export default function Navbar({ onMenuClick }) {
           <button
             type="button"
             onClick={logout}
-            className="focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white"
+            className="focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-coral px-3 text-sm font-semibold text-white"
           >
             <LogOut size={16} />
             <span className="hidden sm:inline">Sign out</span>

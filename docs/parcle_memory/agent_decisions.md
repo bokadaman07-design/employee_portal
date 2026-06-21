@@ -160,3 +160,72 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 09:57 UTC
+
+**Incident:** Produck feedback ticket 8d299ee7-6023-4993-8261-2ba7e443a0ac: Change sign out button color
+
+Classification: ux
+Priority: medium
+Affected route: /
+
+Problem:
+The sign out button color needs to be changed.
+
+Reproduction / evidence:
+- Go to http://localhost:5173/
+- Click on the sign out button
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='Change sign out button color', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['header > div > div:nth-of-type(2) > button'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Update the CSS to change the sign out button color
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_QUrRQpl1gpwI5xbZp17jMM, file:file_0acJLVq5aj8FXELu9uxoresV, file:file_ETaxXGhIAZGdNofFQOvIe36u
+
+**Hypothesis:** The sign out button color needs to be updated in the frontend/src/components/Navbar.jsx file
+
+**Reasoning:** The incident report and documentation suggest that the issue is with the styling of the sign out button, and the smallest change can be made in the Navbar.jsx file by adjusting the Tailwind classes or style applied to the Sign Out button
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Update the CSS to change the sign out button color in frontend/src/components/Navbar.jsx
+
+**Files Modified:**
+* `PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `backend/main.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_employee_gender.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_startup_schema_repairs.py` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-acf36eb1-ac48-4858-a6ae-d8a8cee8e828.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-signout-button-color.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Navbar.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-21-2212d426-24dc-43ef-ae5d-54dd873c3f75.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-2212d426-24dc-43ef-ae5d-54dd873c3f75.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-2212d426-24dc-43ef-ae5d-54dd873c3f75.md`.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---
