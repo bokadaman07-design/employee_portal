@@ -8,6 +8,7 @@ const emptyForm = {
   last_name: "",
   email: "",
   phone: "",
+  country_code: "",
   role: "",
   employment_status: "Active",
 };
@@ -53,6 +54,7 @@ export default function EmployeeList() {
       last_name: employee.last_name,
       email: employee.email,
       phone: employee.phone || "",
+      country_code: employee.country_code || "",
       role: employee.role,
       employment_status: employee.employment_status,
     });
@@ -67,7 +69,7 @@ export default function EmployeeList() {
     event.preventDefault();
     setSaving(true);
     setError("");
-    const payload = { ...form, phone: form.phone || null };
+    const payload = { ...form, phone: form.phone || null, country_code: form.country_code || null };
     try {
       if (editingId) {
         await api.put(`/employees/${editingId}`, payload);
@@ -147,10 +149,14 @@ export default function EmployeeList() {
               <input value={form.email} onChange={(event) => updateForm("email", event.target.value)} type="email" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
             </label>
             <label>
+              <span className="text-sm font-medium text-ink/70">Country code</span>
+              <input value={form.country_code} onChange={(event) => updateForm("country_code", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" placeholder="e.g. +1" />
+            </label>
+            <label>
               <span className="text-sm font-medium text-ink/70">Phone</span>
               <input value={form.phone} onChange={(event) => updateForm("phone", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" />
             </label>
-            <label>
+            <label className="sm:col-span-2">
               <span className="text-sm font-medium text-ink/70">Role</span>
               <input value={form.role} onChange={(event) => updateForm("role", event.target.value)} className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2" required />
             </label>
