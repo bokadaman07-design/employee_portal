@@ -67,6 +67,10 @@ The sign-in page (`frontend/src/views/SignIn.jsx`) starts with empty username an
 
 The Sign Out button in the navbar (`frontend/src/components/Navbar.jsx`) opens an in-app confirmation modal ("Are you sure you want to sign out?") with explicit Confirm and Cancel actions before logging out, preventing accidental logouts. Cancel (or clicking the backdrop) dismisses the dialog and leaves the session intact; Confirm calls `logout()`. The actual token/session clearing remains centralized in `AuthContext.logout` (`frontend/src/context/AuthContext.js`).
 
+## Currency Display
+
+Monetary values on the Dashboard (`frontend/src/views/Dashboard.jsx`) — the "Net payroll" summary card and the monthly payroll table (Base, Allowances, Deductions, Net) — are displayed in Rupees using the `₹` symbol. The underlying salary amounts are stored and returned by the API as plain numbers; the currency symbol is applied only at the presentation layer.
+
 ## Troubleshooting
 
 - If login fails after a backend restart, clear browser local storage and sign in again. This can happen when `SECRET_KEY` is not persisted.

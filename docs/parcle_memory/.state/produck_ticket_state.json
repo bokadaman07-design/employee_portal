@@ -7,5 +7,14 @@
     "workflow_run_id": null,
     "fingerprint": "a4653ba2a9138cc9ec771ea5f8f0e616ee79cbdfa166f1667951a116f1e6c7d2",
     "error": null
+  },
+  "3e5e56af-b0a7-4d4b-b7e6-a4de61c18d45": {
+    "ticket_id": "3e5e56af-b0a7-4d4b-b7e6-a4de61c18d45",
+    "status": "seen",
+    "last_seen": "2026-06-21T09:22:50.161628+00:00",
+    "processed_at": null,
+    "workflow_run_id": null,
+    "fingerprint": "69489a01e15115a5bead02797f4dcddf0f8f027b36ed6d0c02f2827960716092",
+    "error": null
   }
 }

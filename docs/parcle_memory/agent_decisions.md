@@ -351,3 +351,76 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-21 09:26 UTC
+
+**Incident:** Produck feedback ticket 3e5e56af-b0a7-4d4b-b7e6-a4de61c18d45: Change currency units from Dollar to Ruppes
+
+Classification: feature
+Priority: medium
+Affected route: /
+
+Problem:
+The current currency unit is in Dollars, but it should be changed to Ruppes
+
+Reproduction / evidence:
+- Go to the dashboard
+- Check the currency unit
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='Change all the currency units from Dollar to Ruppes', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['main > div > div:nth-of-type(2) > section:nth-of-type(4)'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Update the currency unit to Ruppes
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_QUrRQpl1gpwI5xbZp17jMM, file:file_0acJLVq5aj8FXELu9uxoresV, file:file_GwqKE1F0sudrtjZu7BMBDtI, file:file_KVsVZ9YLXBr3nXB1jYim3
+
+**Hypothesis:** Hard-coded currency unit in the frontend code
+
+**Reasoning:** The documentation and evidence suggest that the issue is likely due to a hard-coded currency unit in the frontend code, specifically in the Dashboard.jsx file. The annotation points to a section on the main page, and the API documentation shows that salary fields are numeric, suggesting that the requested change is a frontend display-label/formatting change.
+
+**Confidence:** 80%
+
+**Remediation Strategy:**
+* Update the currency unit to Rupees in the Dashboard.jsx file
+* Search for and update any hard-coded currency units in shared display components
+
+**Files Modified:**
+* `API_DOCUMENTATION.md` - changed by Enter Pro to implement or verify the remediation.
+* `PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/.state/produck_ticket_state.json` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-6bf0909a-f460-41af-844f-e975fb9d12a2.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-817a3409-8a75-4480-94ff-2fc3554a444d.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-f7738c7e-be03-41cc-a152-f5358a2c8a18.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/3e5e56af-b0a7-4d4b-b7e6-a4de61c18d45/` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/8bbdb460-18f2-4588-8d5a-c38f93b51a80/agent_brief.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/8bbdb460-18f2-4588-8d5a-c38f93b51a80/agent_payload.json` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Navbar.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/Dashboard.jsx` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/dashboard.currency.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/tests/navbar.signout.test.mjs` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-21-48220c17-5fd6-48c6-9309-8bb5509d6ced.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-21-48220c17-5fd6-48c6-9309-8bb5509d6ced.md`.
+
+**Challenges:**
+* Using Enter API key (...2595551f) from --api-key
+Using workspace "bokadaman's Workspace" (id: 10000087268)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---
