@@ -850,3 +850,84 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-22 09:47 UTC
+
+**Incident:** Produck feedback ticket 2e1d8b2f-0369-4fd5-94ed-d2e2889e9980: Phone number field should be split into two separate fields for country code and phone number
+
+Classification: feature
+Priority: medium
+Affected route: /employees
+
+Problem:
+The phone number is a single field. Would be better if it was 2 separate fields. One for country code and one for the actual phone number
+
+Reproduction / evidence:
+- Go to the employees page
+- Try to enter a phone number
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/employees
+Route: /employees
+Screen: 1536x695 DPR 1.25
+Annotation 0: text='The phone number is a single field. WOuld be betetr if it was 2 separate fields. One for country code and one for the actual phone number\n', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['form > div:nth-of-type(2) > label:nth-of-type(4) > input'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Split the phone number field into two separate fields
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_GwqKE1F0sudrtjZu7BMBDtI, file:file_KVsVZ9YLXBr3nXB1jYim3, file:file_Yhrn1JbQU6xjl6pJyG8cMDI
+
+**Hypothesis:** The phone number field in the employee form is not split into separate fields for country code and phone number due to the current implementation in the frontend and backend code.
+
+**Reasoning:** The analysis of the incident and retrieved documentation suggests that the phone number field is currently a single field in both the frontend and backend code. The documentation mentions that the API documentation, backend models, and frontend views need to be updated to support separate fields for country code and phone number. The prior incident documentation also mentions country-code related work, which may be relevant to this issue.
+
+**Confidence:** 80%
+
+**Remediation Strategy:**
+* Update the frontend code in EmployeeList.jsx to split the phone number field into two separate fields
+* Update the backend code in models.py and schemas.py to support separate fields for country code and phone number
+* Update the API documentation to reflect the changes
+
+**Files Modified:**
+* `backend/.env.example` - changed by Enter Pro to implement or verify the remediation.
+* `backend/Dockerfile` - changed by Enter Pro to implement or verify the remediation.
+* `backend/auth.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/database.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/__init__.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/employees.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/leaves.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/salary.py` - changed by Enter Pro to implement or verify the remediation.
+* `docker-compose.yml` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/README.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-21-982f3fed-9039-4196-8d1c-5f553069a704.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260621-currency-rupees-to-dollars-revert.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260622-phone-country-code-split-already-implemented.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/2e1d8b2f-0369-4fd5-94ed-d2e2889e9980/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/Dockerfile` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/index.html` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/package.json` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/postcss.config.js` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/vite.config.js` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-22-e3b7ee91-ce21-408d-92f7-59928286cde6.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-22-e3b7ee91-ce21-408d-92f7-59928286cde6.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-22-e3b7ee91-ce21-408d-92f7-59928286cde6.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---
