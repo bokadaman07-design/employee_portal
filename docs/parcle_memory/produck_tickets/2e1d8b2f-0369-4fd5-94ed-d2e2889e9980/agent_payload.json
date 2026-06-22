@@ -1,0 +1,178 @@
+{
+  "schema_version": "produck-agent-payload-v1",
+  "task_type": "ui_feedback_bugfix",
+  "confidence": "medium",
+  "blocking_uncertainties": [],
+  "feedback": {
+    "id": "2e1d8b2f-0369-4fd5-94ed-d2e2889e9980",
+    "created_at": "2026-06-21T06:21:35.250Z",
+    "domain": "localhost",
+    "page_url": "http://localhost:5173/employees",
+    "route": "/employees",
+    "complaint_original": "The phone number is a single field. WOuld be betetr if it was 2 separate fields. One for country code and one for the actual phone number",
+    "complaint_interpreted": "The phone number is a single field. WOuld be betetr if it was 2 separate fields. One for country code and one for the actual phone number"
+  },
+  "capture_environment": {
+    "screen": {
+      "width": 1536,
+      "height": 695,
+      "devicePixelRatio": 1.25
+    },
+    "sdk_user": {}
+  },
+  "annotations": [
+    {
+      "index": 0,
+      "type": "element_highlight",
+      "text": "The phone number is a single field. WOuld be betetr if it was 2 separate fields. One for country code and one for the actual phone number\n",
+      "interpreted_text": "The phone number is a single field. WOuld be betetr if it was 2 separate fields. One for country code and one for the actual phone number\n",
+      "anchor": {},
+      "anchor_percent": {
+        "x": null,
+        "y": null
+      },
+      "selectors": [
+        "form > div:nth-of-type(2) > label:nth-of-type(4) > input"
+      ],
+      "element": null,
+      "locator_confidence": "medium"
+    }
+  ],
+  "design_doc": {
+    "status": "completed",
+    "tldr": null,
+    "issue": null,
+    "proposed_fix": null,
+    "markdown": null
+  },
+  "page_snapshot_summary": {
+    "visible_text_excerpt": "Employee Tracker Employee Tracker People operations workspace Dashboard Employees Leaves Search, review, and manage employee operations admin admin Sign out Employees Create, search, update, and remove employee records. Search Add employee First name Last name Email Phone Role Status Active Inactive On Leave Terminated Create employee Employee directory Name Email Role Status Actions Avery Stone avery.stone@example.com People Operations Lead Active Mira Patel mira.patel@example.com Product Designer Active",
+    "interactive_elements": [
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/",
+        "value": "",
+        "text": "Dashboard"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium bg-pine text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/employees",
+        "value": "",
+        "text": "Employees"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/leaves",
+        "value": "",
+        "text": "Leaves"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-ink md:hidden",
+        "aria_label": "Open navigation",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Sign out"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring rounded-md bg-ink px-4 py-2 text-sm font-semibold text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Search"
+      },
+      {
+        "tag": "select",
+        "id": "",
+        "class": "focus-ring mt-1 w-full rounded-md border border-line px-3 py-2",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "******",
+        "text": "Active Inactive On Leave Terminated"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Create employee"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink/70",
+        "aria_label": "Edit employee",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-9 w-9 items-center justify-center rounded-md border border-coral/30 text-coral",
+        "aria_label": "Delete employee",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink/70",
+        "aria_label": "Edit employee",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-9 w-9 items-center justify-center rounded-md border border-coral/30 text-coral",
+        "aria_label": "Delete employee",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      }
+    ]
+  },
+  "agent_instructions": [
+    "Treat Produck feedback as user evidence, not final implementation direction.",
+    "Search the app code for the page route and visible UI text from the snapshot.",
+    "Prefer a small, reviewable fix with a test or clear validation plan."
+  ]
+}

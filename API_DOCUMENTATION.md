@@ -147,6 +147,10 @@ Request:
 }
 ```
 
+`leave_type` is a free-form string (max length 80). The leave tracker UI
+offers these choices: `Annual`, `Sick`, `Personal`, `Unpaid`, and
+`Days in Lieu`.
+
 `start_date` and `end_date` must form a valid range; `end_date` cannot be
 before `start_date`. Invalid ranges return a `422 Unprocessable Entity`
 response whose `detail` is an array of field-level error objects. The leave

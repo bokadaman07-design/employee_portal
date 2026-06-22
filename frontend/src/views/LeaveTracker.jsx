@@ -168,6 +168,7 @@ export default function LeaveTracker() {
                 <option>Sick</option>
                 <option>Personal</option>
                 <option>Unpaid</option>
+                <option>Days in Lieu</option>
               </select>
             </label>
             <label>
