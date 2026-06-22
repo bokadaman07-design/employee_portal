@@ -1000,3 +1000,77 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-22 14:12 UTC
+
+**Incident:** Produck feedback ticket b7741f4b-c248-484e-ad31-ba889e400aa5: Flash cards of employees, pending leaves, etc. are not displaying colors in dark mode
+
+Classification: ux
+Priority: medium
+Affected route: /
+
+Problem:
+The dashboard flash cards are not displaying colors when in dark mode
+
+Reproduction / evidence:
+- Switch to dark mode
+- Navigate to the dashboard
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='When I am in dark mode in the dashboard flash cards of employyyes pendingleaves etc are not displaying colors fix that and make them display colors in darkmode', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['#root > div > div > main'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Update the CSS to display colors in dark mode
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_SWHjKxhrOs5WVTIr9tsh1PX0, file:file_0acJLVq5aj8FXELu9uxoresV, file:file_qrS88e86OlgsGtrA67hcb2Eu
+
+**Hypothesis:** The dashboard flash cards are not displaying colors in dark mode due to missing or incorrect dark-mode classes in the CSS
+
+**Reasoning:** The incident documentation and relevant repo documentation suggest that the issue is related to the dark-mode implementation, specifically the use of class-based Tailwind support. The recommended fix is to update the CSS to display colors in dark mode, and the documentation provides guidance on how to implement dark-mode classes. The fact that the issue is specific to dark mode and the dashboard flash cards suggests that the root cause is related to the CSS classes used in these components.
+
+**Confidence:** 80%
+
+**Remediation Strategy:**
+* Update the CSS to display colors in dark mode
+* Verify and add Tailwind dark: classes across cards, tables, inputs, selects, modals, empty states, hover/focus states
+
+**Files Modified:**
+* `backend/tests/conftest.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_leave_days_in_lieu.py` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-22-222ff3ef-af0b-4e36-9341-f09cb31b44b5.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-22-e3b7ee91-ce21-408d-92f7-59928286cde6.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260622-dashboard-flash-cards-dark-mode-color.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260622-days-in-lieu-leave-type.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260622-phone-country-code-split-already-implemented.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/2e1d8b2f-0369-4fd5-94ed-d2e2889e9980/agent_brief.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/2e1d8b2f-0369-4fd5-94ed-d2e2889e9980/agent_payload.json` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/7fa91daa-c489-4bce-a72a-994e66891a6e/agent_brief.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/7fa91daa-c489-4bce-a72a-994e66891a6e/agent_payload.json` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/b7741f4b-c248-484e-ad31-ba889e400aa5/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/components/Card.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-22-c2c4004c-5c7b-43f9-a13e-0c16ab080c22.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-22-c2c4004c-5c7b-43f9-a13e-0c16ab080c22.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-22-c2c4004c-5c7b-43f9-a13e-0c16ab080c22.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---
