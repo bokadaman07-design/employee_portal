@@ -931,3 +931,72 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-22 11:23 UTC
+
+**Incident:** Produck feedback ticket 7fa91daa-c489-4bce-a72a-994e66891a6e: Add 'Days in Lieu' option to leave types
+
+Classification: feature
+Priority: medium
+Affected route: /leaves
+
+Problem:
+The 'Days in Lieu' option is missing from the leave types
+
+Reproduction / evidence:
+- Go to the leaves page
+- Try to select a leave type
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/leaves
+Route: /leaves
+Screen: 1521x695 DPR 1.25
+Annotation 0: text='In leave types, there is no days in Lieu option. Need to add that', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['form > div > label:nth-of-type(2) > select'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Add 'Days in Lieu' to the list of available leave types
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_0acJLVq5aj8FXELu9uxoresV, file:file_3EZuj0WLdA54VCCo2jTugTs2, file:file_ceU6R96mA0gOYxIEfv8eLyp2
+
+**Hypothesis:** The 'Days in Lieu' option is missing from the leave types due to an incomplete implementation in the frontend and backend code
+
+**Reasoning:** The analysis of the incident and retrieved documentation suggests that the 'Days in Lieu' option is not available in the leave types because it has not been added to the frontend and backend code. The recommended implementation focus is to start with the frontend/src/views/LeaveTracker.jsx and inspect the leave type <select> matched by the Produck selector, then add 'Days in Lieu' to the leave-type options used by the form. Additionally, the backend/schemas.py and backend/routers/leaves.py should be inspected to confirm whether leave_type is free-form or constrained, and 'Days in Lieu' should be added there too if necessary.
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Add 'Days in Lieu' to the leave-type options in frontend/src/views/LeaveTracker.jsx
+* Inspect and update backend/schemas.py and backend/routers/leaves.py if necessary
+* Update API_DOCUMENTATION.md examples or accepted-value notes if the repo documents leave-type choices
+
+**Files Modified:**
+* `API_DOCUMENTATION.md` - changed by Enter Pro to implement or verify the remediation.
+* `PARCLE_MEMORY.md` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_leave_days_in_lieu.py` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/API_DOCUMENTATION.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260622-days-in-lieu-leave-type.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/7fa91daa-c489-4bce-a72a-994e66891a6e/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/LeaveTracker.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-22-222ff3ef-af0b-4e36-9341-f09cb31b44b5.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-22-222ff3ef-af0b-4e36-9341-f09cb31b44b5.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-22-222ff3ef-af0b-4e36-9341-f09cb31b44b5.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

@@ -76,6 +76,7 @@ Database schema design:
 - `User` handles authentication and future RBAC.
 - `Employee` is the core HR entity.
 - `LeaveRequest` references `Employee` with a foreign key and stores status as a constrained string at the schema layer.
+- `LeaveRequest.leave_type` is intentionally free-form text (`schemas.py`: `str`, max length 80) rather than a `Literal`; the selectable values are curated only in the `LeaveTracker.jsx` "Type" `<select>` (currently `Annual`, `Sick`, `Personal`, `Unpaid`, `Days in Lieu`). To add a leave type, add an `<option>` there — no backend change is required.
 - `SalaryRecord` references `Employee` and stores calculated `net_salary` for stable historical payroll reporting.
 - All major tables include `created_at` and `updated_at`.
 

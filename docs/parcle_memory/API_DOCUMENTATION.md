@@ -154,6 +154,8 @@ Request:
 
 > The Leave Tracker UI (`frontend/src/views/LeaveTracker.jsx`) now requires a non-empty `reason`. The field is marked `required`, client-side validation blocks submission when the reason is blank, and the trimmed `reason` value is sent in the payload.
 
+> `leave_type` is a free-form string (max length 80). The Leave Tracker UI offers these choices: `Annual`, `Sick`, `Personal`, `Unpaid`, and `Days in Lieu`.
+
 ### GET /leaves/
 
 Optional query parameters:

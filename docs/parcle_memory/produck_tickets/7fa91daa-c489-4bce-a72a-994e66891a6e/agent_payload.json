@@ -1,0 +1,168 @@
+{
+  "schema_version": "produck-agent-payload-v1",
+  "task_type": "ui_feedback_bugfix",
+  "confidence": "medium",
+  "blocking_uncertainties": [],
+  "feedback": {
+    "id": "7fa91daa-c489-4bce-a72a-994e66891a6e",
+    "created_at": "2026-06-22T11:17:35.171Z",
+    "domain": "localhost",
+    "page_url": "http://localhost:5173/leaves",
+    "route": "/leaves",
+    "complaint_original": "In leave types, there is no days in Lieu option. Need to add that",
+    "complaint_interpreted": "In leave types, there is no days in Lieu option. Need to add that"
+  },
+  "capture_environment": {
+    "screen": {
+      "width": 1521,
+      "height": 695,
+      "devicePixelRatio": 1.25
+    },
+    "sdk_user": {}
+  },
+  "annotations": [
+    {
+      "index": 0,
+      "type": "element_highlight",
+      "text": "In leave types, there is no days in Lieu option. Need to add that",
+      "interpreted_text": "In leave types, there is no days in Lieu option. Need to add that",
+      "anchor": {},
+      "anchor_percent": {
+        "x": null,
+        "y": null
+      },
+      "selectors": [
+        "form > div > label:nth-of-type(2) > select"
+      ],
+      "element": null,
+      "locator_confidence": "medium"
+    }
+  ],
+  "design_doc": {
+    "status": "completed",
+    "tldr": null,
+    "issue": null,
+    "proposed_fix": null,
+    "markdown": null
+  },
+  "page_snapshot_summary": {
+    "visible_text_excerpt": "Employee Tracker Employee Tracker People operations workspace Dashboard Employees Leaves Search, review, and manage employee operations admin admin Sign out Leave Tracker Submit, review, approve, and reject leave requests. All statuses Pending Approved Rejected Total 1 All requests Pending 0 Needs review Approved 1 Accepted requests Rejected 0 Declined requests Submit leave request Employee Select employee Kamal Basavaraju Avery Stone Mira Patel Type Annual Sick Personal Unpaid Start date End date Reason * Submit request Requests Mira Patel Personal leave from 2026-06-26 to 2026-06-27 Approved",
+    "interactive_elements": [
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink dark:text-fog/70 dark:hover:bg-edge dark:hover:text-fog",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/",
+        "value": "",
+        "text": "Dashboard"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-mist hover:text-ink dark:text-fog/70 dark:hover:bg-edge dark:hover:text-fog",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/employees",
+        "value": "",
+        "text": "Employees"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "class": "focus-ring flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium bg-pine text-white",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "http://localhost:5173/leaves",
+        "value": "",
+        "text": "Leaves"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-ink md:hidden dark:border-edge dark:bg-panel dark:text-fog",
+        "aria_label": "Open navigation",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-ink dark:border-edge dark:bg-panel dark:text-fog",
+        "aria_label": "Switch to light mode",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring inline-flex h-10 items-center gap-2 rounded-md bg-ink px-3 text-sm font-semibold text-white dark:bg-pine",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Sign out"
+      },
+      {
+        "tag": "select",
+        "id": "",
+        "class": "focus-ring rounded-md border border-line bg-white px-3 py-2 text-sm dark:border-edge dark:bg-panel dark:text-fog",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "All statuses Pending Approved Rejected"
+      },
+      {
+        "tag": "select",
+        "id": "",
+        "class": "focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "*",
+        "text": "Select employee Kamal Basavaraju Avery Stone Mira Patel"
+      },
+      {
+        "tag": "select",
+        "id": "",
+        "class": "focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "******",
+        "text": "Annual Sick Personal Unpaid"
+      },
+      {
+        "tag": "textarea",
+        "id": "",
+        "class": "focus-ring mt-1 min-h-24 w-full rounded-md border border-line px-3 py-2 dark:border-edge",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": ""
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "class": "focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-pine px-4 py-2 text-sm font-semibold text-white disabled:opacity-60",
+        "aria_label": "",
+        "placeholder": "",
+        "href": "",
+        "value": "",
+        "text": "Submit request"
+      }
+    ]
+  },
+  "agent_instructions": [
+    "Treat Produck feedback as user evidence, not final implementation direction.",
+    "Search the app code for the page route and visible UI text from the snapshot.",
+    "Prefer a small, reviewable fix with a test or clear validation plan."
+  ]
+}
