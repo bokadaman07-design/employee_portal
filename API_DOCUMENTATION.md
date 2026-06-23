@@ -201,7 +201,7 @@ Marks a leave request as rejected.
 
 ## Salary
 
- Salary amounts (`base_salary`, `allowances`, `deductions`, `net_salary`, and the summary totals) are stored and returned as plain numeric values without a currency unit. The frontend Dashboard renders these amounts in Dollars (`$`); the currency symbol is applied only at the presentation layer.
+ Salary amounts (`base_salary`, `allowances`, `bonus`, `deductions`, `net_salary`, and the summary totals) are stored and returned as plain numeric values without a currency unit. The frontend Dashboard renders these amounts in Dollars (`$`); the currency symbol is applied only at the presentation layer.
 
 ### POST /salary/
 
@@ -212,12 +212,13 @@ Request:
   "employee_id": 3,
   "base_salary": 7000,
   "allowances": 500,
+  "bonus": 1000,
   "deductions": 250,
   "month": "2026-06"
 }
 ```
 
-Response includes calculated `net_salary`.
+Response includes calculated `net_salary` (`base_salary + allowances + bonus - deductions`). `bonus` is optional and defaults to `0` when omitted.
 
 ### GET /salary/
 
@@ -232,7 +233,7 @@ Returns one salary record.
 
 ### PUT /salary/{salary_id}
 
-Updates salary fields and recalculates `net_salary`.
+Updates salary fields (including `bonus`) and recalculates `net_salary`.
 
 ### GET /salary/summary?month=2026-06
 
@@ -244,8 +245,9 @@ Response:
   "record_count": 3,
   "gross_salary": 21000,
   "total_allowances": 1500,
+  "total_bonus": 3000,
   "total_deductions": 750,
-  "net_payroll": 21750
+  "net_payroll": 24750
 }
 ```
 

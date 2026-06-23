@@ -113,6 +113,7 @@ class SalaryBase(BaseModel):
     employee_id: int
     base_salary: float = Field(..., ge=0)
     allowances: float = Field(default=0, ge=0)
+    bonus: float = Field(default=0, ge=0)
     deductions: float = Field(default=0, ge=0)
     month: str = Field(..., pattern=r"^\d{4}-\d{2}$")
 
@@ -124,6 +125,7 @@ class SalaryCreate(SalaryBase):
 class SalaryUpdate(BaseModel):
     base_salary: float | None = Field(default=None, ge=0)
     allowances: float | None = Field(default=None, ge=0)
+    bonus: float | None = Field(default=None, ge=0)
     deductions: float | None = Field(default=None, ge=0)
     month: str | None = Field(default=None, pattern=r"^\d{4}-\d{2}$")
 
@@ -142,5 +144,6 @@ class PayrollSummary(BaseModel):
     record_count: int
     gross_salary: float
     total_allowances: float
+    total_bonus: float
     total_deductions: float
     net_payroll: float
