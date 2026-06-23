@@ -159,7 +159,7 @@ export default function Dashboard() {
           <h1 className="text-2xl font-semibold tracking-normal text-ink dark:text-fog">Dashboard</h1>
           <p className="mt-1 text-sm text-ink/60 dark:text-fog/60">Workforce, leave, and payroll signals for the current month.</p>
         </div>
-        <button onClick={loadDashboard} className="focus-ring inline-flex items-center gap-2 rounded-md border border-line bg-white px-3 py-2 text-sm font-semibold text-ink dark:border-edge dark:bg-panel dark:text-fog">
+        <button onClick={loadDashboard} className="focus-ring inline-flex items-center gap-2 rounded-md border border-line bg-white px-3 py-2 text-sm font-semibold text-black dark:border-edge dark:bg-panel dark:text-white">
           <RefreshCw size={16} />
           Refresh
         </button>
