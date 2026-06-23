@@ -13,8 +13,10 @@ from schemas import PayrollSummary, SalaryCreate, SalaryOut, SalaryUpdate
 router = APIRouter(prefix="/salary", tags=["Salary"])
 
 
-def calculate_net_salary(base_salary: float, allowances: float, deductions: float) -> float:
-    return round(base_salary + allowances - deductions, 2)
+def calculate_net_salary(
+    base_salary: float, allowances: float, bonus: float, deductions: float
+) -> float:
+    return round(base_salary + allowances + bonus - deductions, 2)
 
 
 def get_salary_or_404(db: Session, salary_id: int) -> SalaryRecord:
@@ -40,6 +42,7 @@ def create_salary_record(
     data["net_salary"] = calculate_net_salary(
         data["base_salary"],
         data["allowances"],
+        data["bonus"],
         data["deductions"],
     )
     salary = SalaryRecord(**data)
@@ -75,6 +78,7 @@ def payroll_summary(
             func.count(SalaryRecord.id),
             func.coalesce(func.sum(SalaryRecord.base_salary), 0),
             func.coalesce(func.sum(SalaryRecord.allowances), 0),
+            func.coalesce(func.sum(SalaryRecord.bonus), 0),
             func.coalesce(func.sum(SalaryRecord.deductions), 0),
             func.coalesce(func.sum(SalaryRecord.net_salary), 0),
         ).where(SalaryRecord.month == month)
@@ -84,8 +88,9 @@ def payroll_summary(
         record_count=row[0],
         gross_salary=round(row[1], 2),
         total_allowances=round(row[2], 2),
-        total_deductions=round(row[3], 2),
-        net_payroll=round(row[4], 2),
+        total_bonus=round(row[3], 2),
+        total_deductions=round(row[4], 2),
+        net_payroll=round(row[5], 2),
     )
 
 
@@ -111,6 +116,7 @@ def update_salary_record(
     salary.net_salary = calculate_net_salary(
         salary.base_salary,
         salary.allowances,
+        salary.bonus,
         salary.deductions,
     )
     db.commit()

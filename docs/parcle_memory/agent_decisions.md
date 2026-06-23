@@ -1143,3 +1143,77 @@ Using model auto (provider: anthropic)
 **Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
 
 ---
+
+## 2026-06-23 13:36 UTC
+
+**Incident:** Produck feedback ticket eda8c5ea-ab2b-43e3-ad7e-a82abbd5f2aa: Add a specific separate field for Bonus
+
+Classification: feature
+Priority: medium
+Affected route: /
+
+Problem:
+The current form does not have a separate field for Bonus, which is required for accurate employee data tracking.
+
+Reproduction / evidence:
+- Go to the employee form
+- Try to find a field for Bonus
+
+Location evidence for pinpointing the UI:
+Page URL: http://localhost:5173/
+Route: /
+Screen: 1875x951 DPR 1
+Annotation 0: text='Add a specific seperate field for Bonus', anchor_px={}, anchor_percent={'x': None, 'y': None}, selectors=['main > div > section > form'], element=None, locator_confidence=medium
+
+
+Suggested fix:
+Add a new field to the employee form for Bonus
+
+Use this as a repo-level code-change request only if the Produck evidence is actionable. If the element or behavior is
+too uncertain, write an investigation note in the Parcle memory incident record instead of guessing.
+
+**Documentation Referenced:**
+* file:file_3EZuj0WLdA54VCCo2jTugTs2, file:file_KVsVZ9YLXBr3nXB1jYim3, file:file_mvvOIdiWDfTw6gLfS0SWqkn
+
+**Hypothesis:** The current form does not have a separate field for Bonus, which is required for accurate employee data tracking.
+
+**Reasoning:** The incident report and documentation suggest that the Bonus field is missing from the employee form, and the current salary contract does not account for a separate Bonus field. The affected components, likely affected files, and suggested fix all point to the need for a new field to be added to the employee form and potentially updated in the backend salary files.
+
+**Confidence:** 90%
+
+**Remediation Strategy:**
+* Add a new field to the employee form for Bonus
+* Update backend salary files to include Bonus field
+
+**Files Modified:**
+* `API_DOCUMENTATION.md` - changed by Enter Pro to implement or verify the remediation.
+* `backend/main.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/models.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/routers/salary.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/schemas.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_salary_bonus.py` - changed by Enter Pro to implement or verify the remediation.
+* `backend/tests/test_startup_schema_repairs.py` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/2026-06-23-fc3db6f2-1f7c-4763-bfeb-e95018cc37c9.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/incidents/20260623-refresh-button-mode-color.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/25b8c104-6907-40c3-8c25-2fb6862e34fb/agent_brief.md` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/25b8c104-6907-40c3-8c25-2fb6862e34fb/agent_payload.json` - changed by Enter Pro to implement or verify the remediation.
+* `docs/parcle_memory/produck_tickets/eda8c5ea-ab2b-43e3-ad7e-a82abbd5f2aa/` - changed by Enter Pro to implement or verify the remediation.
+* `frontend/src/views/Dashboard.jsx` - changed by Enter Pro to implement or verify the remediation.
+
+**Parcle Query:** Captured in `docs/parcle_memory/incidents/2026-06-23-b76154eb-04c9-4ac1-82ee-1396b630dee1.md`.
+
+**Parcle Retrieval:** Captured in `docs/parcle_memory/incidents/2026-06-23-b76154eb-04c9-4ac1-82ee-1396b630dee1.md`.
+
+**Enter Pro Prompt:** Captured in `docs/parcle_memory/incidents/2026-06-23-b76154eb-04c9-4ac1-82ee-1396b630dee1.md`.
+
+**Challenges:**
+* Using Enter API key (...f7311bfe) from --api-key
+Using workspace "Kamalanabham Basavaraju's Workspace" (id: 10000087265)
+Using model auto (provider: anthropic)
+
+
+**Risks:** AI-generated changes may have repository-specific side effects; validation passed but human review is required.
+
+**Follow-up Recommendations:** Review the diff and validation output, run staging checks, then push the branch manually if approved.
+
+---

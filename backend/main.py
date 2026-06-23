@@ -33,6 +33,14 @@ def apply_sqlite_schema_repairs() -> None:
         if "gender" not in employee_columns:
             connection.execute(text("ALTER TABLE employees ADD COLUMN gender VARCHAR(30)"))
 
+    if "salary_records" in inspector.get_table_names():
+        salary_columns = {column["name"] for column in inspector.get_columns("salary_records")}
+        with engine.begin() as connection:
+            if "bonus" not in salary_columns:
+                connection.execute(
+                    text("ALTER TABLE salary_records ADD COLUMN bonus FLOAT NOT NULL DEFAULT 0")
+                )
+
 
 def seed_default_admin(db: Session) -> None:
     existing_admin = db.scalar(select(User).where(User.username == "admin"))

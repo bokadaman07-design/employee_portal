@@ -18,6 +18,7 @@ export default function Dashboard() {
     record_count: 0,
     gross_salary: 0,
     total_allowances: 0,
+    total_bonus: 0,
     total_deductions: 0,
     net_payroll: 0,
   });
@@ -26,6 +27,7 @@ export default function Dashboard() {
     employee_id: "",
     base_salary: "",
     allowances: "0",
+    bonus: "0",
     deductions: "0",
     month: currentMonth,
   });
@@ -39,9 +41,9 @@ export default function Dashboard() {
   );
 
   // Live preview of the net salary the backend will compute on submit. This
-  // mirrors the backend contract (net_salary = base_salary + allowances -
-  // deductions, rounded to 2 decimals) so the user sees the same figure that
-  // will be persisted. Empty/invalid inputs are treated as 0 so the preview
+  // mirrors the backend contract (net_salary = base_salary + allowances +
+  // bonus - deductions, rounded to 2 decimals) so the user sees the same figure
+  // that will be persisted. Empty/invalid inputs are treated as 0 so the preview
   // never shows NaN while the form is being filled in.
   const salaryPreview = useMemo(() => {
     const toNumber = (value) => {
@@ -50,10 +52,11 @@ export default function Dashboard() {
     };
     const base = toNumber(salaryForm.base_salary);
     const allowances = toNumber(salaryForm.allowances);
+    const bonus = toNumber(salaryForm.bonus);
     const deductions = toNumber(salaryForm.deductions);
-    const net = Math.round((base + allowances - deductions) * 100) / 100;
-    return { base, allowances, deductions, net };
-  }, [salaryForm.base_salary, salaryForm.allowances, salaryForm.deductions]);
+    const net = Math.round((base + allowances + bonus - deductions) * 100) / 100;
+    return { base, allowances, bonus, deductions, net };
+  }, [salaryForm.base_salary, salaryForm.allowances, salaryForm.bonus, salaryForm.deductions]);
 
   async function loadDashboard() {
     setError("");
@@ -134,6 +137,7 @@ export default function Dashboard() {
         employee_id: Number(salaryForm.employee_id),
         base_salary: Number(salaryForm.base_salary),
         allowances: Number(salaryForm.allowances || 0),
+        bonus: Number(salaryForm.bonus || 0),
         deductions: Number(salaryForm.deductions || 0),
         month: salaryForm.month,
       });
@@ -142,6 +146,7 @@ export default function Dashboard() {
         employee_id: "",
         base_salary: "",
         allowances: "0",
+        bonus: "0",
         deductions: "0",
       }));
       await loadDashboard();
@@ -207,19 +212,23 @@ export default function Dashboard() {
               <input value={salaryForm.allowances} onChange={(event) => setSalaryForm({ ...salaryForm, allowances: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" />
             </label>
             <label>
+              <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Bonus</span>
+              <input value={salaryForm.bonus} onChange={(event) => setSalaryForm({ ...salaryForm, bonus: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" />
+            </label>
+            <label>
               <span className="text-sm font-medium text-ink/70 dark:text-fog/70">Deductions</span>
               <input value={salaryForm.deductions} onChange={(event) => setSalaryForm({ ...salaryForm, deductions: event.target.value })} type="number" min="0" step="0.01" className="focus-ring mt-1 w-full rounded-md border border-line px-3 py-2 dark:border-edge" />
             </label>
           </div>
           {/* Live total preview: updates in real time as base salary,
-              allowances, or deductions change, so the user can confirm the net
-              amount before submitting. Matches the backend salary contract. */}
+              allowances, bonus, or deductions change, so the user can confirm the
+              net amount before submitting. Matches the backend salary contract. */}
           <div className="mt-4 rounded-md border border-line bg-mist/40 px-4 py-3 dark:border-edge dark:bg-night/40">
             <div className="flex items-center justify-between text-sm text-ink/70 dark:text-fog/70">
-              <span>Base + allowances − deductions</span>
+              <span>Base + allowances + bonus − deductions</span>
               <span>
-                ${salaryPreview.base.toLocaleString()} + ${salaryPreview.allowances.toLocaleString()} − $
-                {salaryPreview.deductions.toLocaleString()}
+                ${salaryPreview.base.toLocaleString()} + ${salaryPreview.allowances.toLocaleString()} + $
+                {salaryPreview.bonus.toLocaleString()} − ${salaryPreview.deductions.toLocaleString()}
               </span>
             </div>
             <div className="mt-2 flex items-center justify-between border-t border-line pt-2 dark:border-edge">
@@ -239,12 +248,13 @@ export default function Dashboard() {
             <p className="mt-4 rounded-md border border-dashed border-line px-4 py-8 text-center text-sm text-ink/55 dark:border-edge dark:text-fog/55">No salary records for this month.</p>
           ) : (
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full min-w-[620px] text-left text-sm">
+              <table className="w-full min-w-[720px] text-left text-sm">
                 <thead className="border-b border-line text-ink/55 dark:border-edge dark:text-fog/55">
                   <tr>
                     <th className="py-2 font-medium">Employee ID</th>
                     <th className="py-2 font-medium">Base</th>
                     <th className="py-2 font-medium">Allowances</th>
+                    <th className="py-2 font-medium">Bonus</th>
                     <th className="py-2 font-medium">Deductions</th>
                     <th className="py-2 font-medium">Net</th>
                   </tr>
@@ -255,6 +265,7 @@ export default function Dashboard() {
                       <td className="py-3">{record.employee_id}</td>
                       <td className="py-3">${record.base_salary.toLocaleString()}</td>
                       <td className="py-3">${record.allowances.toLocaleString()}</td>
+                      <td className="py-3">${record.bonus.toLocaleString()}</td>
                       <td className="py-3">${record.deductions.toLocaleString()}</td>
                       <td className="py-3 font-semibold">${record.net_salary.toLocaleString()}</td>
                     </tr>

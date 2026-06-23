@@ -74,6 +74,7 @@ class SalaryRecord(TimestampMixin, Base):
     employee_id: Mapped[int] = mapped_column(ForeignKey("employees.id"), index=True, nullable=False)
     base_salary: Mapped[float] = mapped_column(Float, nullable=False)
     allowances: Mapped[float] = mapped_column(Float, default=0, nullable=False)
+    bonus: Mapped[float] = mapped_column(Float, default=0, nullable=False)
     deductions: Mapped[float] = mapped_column(Float, default=0, nullable=False)
     net_salary: Mapped[float] = mapped_column(Float, nullable=False)
     month: Mapped[str] = mapped_column(String(7), index=True, nullable=False)
